@@ -3,12 +3,6 @@
     @parent
     <link rel="stylesheet" type="text/css" href="/semantic/components/video.css">
     <style type="text/css">
-    body {
-        background-color: #DADADA;
-    }
-    .separacion {
-        height: 45px;
-    }
     .items>.item{
         padding: 10px!important;
         background-color: rgb(200,200,200)!important;

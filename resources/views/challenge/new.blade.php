@@ -1,42 +1,11 @@
 @extends('cuerpoHTML')
-
-
-
-
-<form class="ui form new challenge" method="post" action="/challenge/new" id="contenido">
-  <i class="close icon"></i>
-  <div class="header">
-    Nuevo Desafio
-  </div>
-  <div class="image content" >
-    <div class="ui medium image">
-      <img src="/images/galeria.png" width="500px" height="500px">
-    </div>
-    <div class="description">
-    <div class="ui header">Titulo</div>
-      <div class="field">
-        <input id="title" name="title" >
-      </div>
-      <div class="ui header">Descripcion</div>
-      <div class="field">
-        <label>Describe el evento que deseas crear</label>
-        <textarea id="description" name="description" rows="2"></textarea>
-      </div>
-    </div>
-  </div>
-  <div class="actions">
-    <div class="ui black deny button">
-      Cancelar
-    </div>
-    <div class="ui right labeled icon button" onclick="javascript:enviar()" >
-      Listo, crear evento!
-      <i class="checkmark icon"></i>
-    </div>
-  </div>
-</form>
-<script>
-
-    function enviar() {
+@section('css')
+    @parent
+@stop
+@section('js')
+    @parent
+    <script>
+    function crearDesafio() {
       var xhttp;
       var title = document.getElementById('title').value;
       var description = document.getElementById('description').value;
@@ -53,3 +22,13 @@
       xhttp.send("title="+title+"&description="+description);
     }
 </script>
+@stop
+@section('barraMenu')
+    @include('menu')
+@stop
+@section('contenido')
+  <div class="ui container">
+    sadgsd
+  </div>
+@stop 
+

@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-    <link rel="icon" href="/images/ico.png" type="image/png"> 
-    <script src="/js/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/semantic/semantic.css">
-    <script src="/semantic/semantic.js"></script>
+@extends('cuerpoHTML')
+@section('css')
+    @parent
   <style type="text/css">
     body {
       background-color: #DADADA;
     }
     body > .grid {
       height: 100%;
-      background-image: url('images/ico.png');
-      background-repeat: no-repeat;
-      background-position: 40% 1%;
-      background-size: 300px 300px;
-      background-origin: content-box;
     }
     .image {
       margin-top: -100px;
@@ -24,18 +14,43 @@
     .column {
       max-width: 450px;
     }
-
   </style>
-</head>
-<body>
-
+@stop
+@section('js')
+    @parent
+    <script>
+      $(document).ready(function() {
+          $('.ui.form').form({
+              fields: {
+                email: {
+                  identifier  : 'email',
+                  rules: [{
+                      type   : 'empty',
+                      prompt : 'Ingrese su correo'
+                    }]
+                },
+                password: {
+                  identifier  : 'password',
+                  rules: [{
+                      type   : 'empty',
+                      prompt : 'Ingrese su contraseña'
+                    }]
+                }
+              }});
+        });
+      </script>
+@stop
+@section('barraMenu')
+@stop
+@section('contenido')
 <div class="ui middle aligned center aligned grid">
   <div class="column">
-    <h2 class="ui black image header">
+    <h1 class="ui black header">
+    <img class="ui image" src="/images/ico.png">
      <div class="content">
         Ingresar
       </div>
-    </h2>
+    </h1>
        @if ($errors->has('mensaje'))
        <div class="ui error message">
          <div class="header">{{$errors->first('mensaje')}}</div>
@@ -64,92 +79,5 @@
       ¿No estas registrado? <a href="user/signin">Nuevo registro</a>
     </div>
   </div>
-</div>    
-    
-<script>
-  $(document).ready(function() {
-      $('.ui.form').form({
-          fields: {
-            email: {
-              identifier  : 'email',
-              rules: [{
-                  type   : 'empty',
-                  prompt : 'Ingrese su correo'
-                }]
-            },
-            password: {
-              identifier  : 'password',
-              rules: [{
-                  type   : 'empty',
-                  prompt : 'Ingrese su contraseña'
-                }]
-            }
-          }});
-    });
-  </script>
-</body>
-</html>
-
-
-<!--
-<div class="container">
-<nav class="navbar navbar-inverse">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="{{ URL::to('/') }}">Usuarios</a>
-    </div>
-</nav>
-<h1>Create Usuario :v</h1>
-
-<form method="POST" action="http://php-francuchin.c9users.io/user" accept-charset="UTF-8"><input name="_token" type="hidden" value="yOfX7Eg5pucpoojCjt8nnn9OdIrAjlbylp9RNJtN">
-    <label for="first_name">First_name</label> 
-    <input class="form-control" name="first_name" type="text" value="{{Input::old('first_name')}}" >
-    @if ($errors->has('first_name'))
-       <small class=error>{{$errors->first('first_name')}}</small> <br>
-    @endif
-    <label for="last_name">Last_name</label>
-    <input class="form-control" name="last_name" type="text" value="{{Input::old('last_name')}}" >
-    @if ($errors->has('last_name'))
-       <small class=error>{{$errors->first('last_name')}}</small> <br>
-    @endif
-    <label for="email">Email</label>
-    <input class="form-control" name="email" type="email" id="email" value="{{Input::old('email')}}" >
-    @if ($errors->has('email'))
-       <small class=error>{{$errors->first('email')}}</small> <br>
-    @endif
-    <label for="password">password</label>
-    <input  class="form-control" name="password" type="password" value="" id="password">
-    @if ($errors->has('password'))
-       <small class=error>{{$errors->first('password')}}</small> <br>
-    @endif
-    <input class="btn btn-primary" type="submit" value="Crear User">
-</form> 
-</div>
--->
-
-
-<!--
-<div class="ui container">
-    <link rel="stylesheet" type="text/css" href="semantic/components/video.css">
-    <script src="semantic/components/video.js"></script>
-    <div class="ui link cards">
-        <div class="card">
-          <div class="content">
-            <div class="right floated meta">14h</div><img class="ui avatar image" src="/images/avatar/large/elliot.jpg"> Elliot </div>
-          <div class="image">
-            <div class="ui video" data-source="youtube" data-id="GvD3CHA48pA" data-icon="video" data-image="https://static-secure.guim.co.uk/sys-images/Guardian/Pix/pictures/2014/3/16/1394975800825/Babymetal-010.jpg" ></div>
-          </div>
-          <div class="content"><span class="right floated"> <i class="heart outline like icon"></i> 17 likes </span> <i class="comment icon"></i> 3 comments </div>
-          <div class="extra content">
-            <div class="ui large transparent left icon input">
-              <i class="heart outline icon"></i>
-              <input placeholder="Añadir comentario..." type="text">
-            </div>
-          </div>
-        </div>
-    </div>
-</div>
-<script type="text/javascript">
-    $('.ui.video').video();
-</script>
-
--->
+</div>  
+@stop 

@@ -23,12 +23,12 @@
 <body>
 <div class="ui middle aligned center aligned grid">
   <div class="column">
-    <h2 class="ui black image header">
-      <i class="users icon"></i>
-      <div class="content">
+    <h1 class="ui black header">
+    <img class="ui image" src="/images/ico.png">
+     <div class="content">
         Registro
       </div>
-    </h2>
+    </h1>
     @if (count($errors) > 0)
        <div class="ui error message">
       @foreach ($errors->all() as $error)
