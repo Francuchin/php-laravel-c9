@@ -13,11 +13,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        
+        //php artisan migrate:refresh --seed
+        
         //$this->call(UsersTableSeeder::class);
+        User::create(array(
+                'email' => 'francuchin@gmail.com',
+                'first_name' => 'Jean',
+                'last_name' => 'Aramburu',
+                'password' => md5('1234'),
+            ));
         $faker = Faker\Factory::create('es_ES');
-        for ($i = 0; $i < 60; $i++)
+        for ($i = 0; $i < 9; $i++)
         {
-            $user = User::create(array(
+            User::create(array(
                 'email' => $faker->unique()->email,
                 'first_name' => $faker->firstName,
                 'last_name' => $faker->lastName,

@@ -10,7 +10,12 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'PaginasController@index');
+Route::get('user/signin',function(){
+    return view('signin');
 });
+Route::post('user/login','UserController@login');
+Route::get('user/logout','UserController@logout');
+Route::post('user/showByEmail/{email}','UserController@showByEmail');
 Route::resource('user', 'UserController');
+Route::post('challenge/prueba','ChallengeController@index');
