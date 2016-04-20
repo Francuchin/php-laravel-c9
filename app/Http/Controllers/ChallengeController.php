@@ -19,7 +19,8 @@ class ChallengeController extends Controller
      */
     public function index()
     {
-        dd(Input::all());
+        //dd(Input::all());
+        return view('challenge.exit');
     }
 
     /**

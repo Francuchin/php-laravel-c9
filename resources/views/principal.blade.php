@@ -1,47 +1,42 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Chellenges</title>
-    <script src="/js/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/semantic/semantic.css">
-    <script src="/semantic/semantic.js"></script>
+@extends('cuerpoHTML')
+@section('css')
+    @parent
     <link rel="stylesheet" type="text/css" href="/semantic/components/video.css">
-    <script src="/semantic/components/video.js"></script>
     <style type="text/css">
-        body {
-            background-color: #DADADA;
+    body {
+        background-color: #DADADA;
+    }
+    .separacion {
+        height: 45px;
+    }
+    .items>.item{
+        padding: 10px!important;
+        background-color: rgb(200,200,200)!important;
+        border:solid 1px rgba(0,0,0,0.3)!important;
+        border-radius: 5px!important;
+        box-shadow: 0px 0px 2px rgba(0,0,0,0.5)!important;
+    }
+    @media (min-width: 768px) {
+        .p60 {
+            width: 60%;
         }
-        .separacion {
-            height: 45px;
-        }
-        .items>.item{
-            padding: 10px!important;
-            background-color: rgb(200,200,200)!important;
-            border:solid 1px rgba(0,0,0,0.3)!important;
-            border-radius: 5px!important;
-            box-shadow: 0px 0px 2px rgba(0,0,0,0.5)!important;
-        }
-        @media (min-width: 768px) {
-            .p60 {
-                width: 60%;
-            }
-        }
+    }
     </style>
-</head>
-
-<body>
-    <div class="ui fixed inverted menu">
-        <div class="ui container">
-            <a href="#" class="header item">Challenge Accepted</a>
-            <a href="#" class="item">Home</a>
-            <a href="javascript:newChallengeModal();" class="item" >Nuevo Desafio</a>
-            <a class="item" href="user/logout">salir</a>
-        </div>
-    </div>
-    <div class="separacion"></div>
-
-    <div class="ui container">
+@stop
+@section('js')
+    @parent
+    <script src="/semantic/components/video.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('.ui.video').video();
+    });
+    </script>
+@stop
+@section('barraMenu')
+    @include('menu')
+@stop
+@section('contenido')
+<div class="ui container">
         <div class="ui items p60">
             <div class="item">
                 <div class="content">
@@ -88,12 +83,4 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.ui.video').video();
-        });
-    </script>
-    @include('challenge\new')  
-</body>
-
-</html>
+@stop  

@@ -1,9 +1,14 @@
-<form class="ui modal form new challenge" method="post" action="/challenge/new">
+@extends('cuerpoHTML')
+
+
+
+
+<form class="ui form new challenge" method="post" action="/challenge/new" id="contenido">
   <i class="close icon"></i>
   <div class="header">
     Nuevo Desafio
   </div>
-  <div class="image content" id="contenido">
+  <div class="image content" >
     <div class="ui medium image">
       <img src="/images/galeria.png" width="500px" height="500px">
     </div>
@@ -29,10 +34,8 @@
     </div>
   </div>
 </form>
-  <script>
-    function newChallengeModal(){
-      $('.ui.modal.new.challenge').modal('show');
-    }
+<script>
+
     function enviar() {
       var xhttp;
       var title = document.getElementById('title').value;
@@ -49,4 +52,4 @@
       xhttp.setRequestHeader('X-CSRF-TOKEN', '<?=csrf_token() ?>');     
       xhttp.send("title="+title+"&description="+description);
     }
-  </script>
+</script>

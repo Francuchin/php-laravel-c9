@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="icon" href="/images/ico.png" type="image/png"> 
     <script src="/js/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/semantic/semantic.css">
     <script src="/semantic/semantic.js"></script>
@@ -11,6 +12,11 @@
     }
     body > .grid {
       height: 100%;
+      background-image: url('images/ico.png');
+      background-repeat: no-repeat;
+      background-position: 40% 1%;
+      background-size: 300px 300px;
+      background-origin: content-box;
     }
     .image {
       margin-top: -100px;
@@ -18,6 +24,7 @@
     .column {
       max-width: 450px;
     }
+
   </style>
 </head>
 <body>
@@ -25,8 +32,7 @@
 <div class="ui middle aligned center aligned grid">
   <div class="column">
     <h2 class="ui black image header">
-      <i class="users icon"></i>
-      <div class="content">
+     <div class="content">
         Ingresar
       </div>
     </h2>
@@ -68,11 +74,7 @@
               identifier  : 'email',
               rules: [{
                   type   : 'empty',
-                  prompt : 'Ingrese su Correo'
-                },
-                {
-                  type   : 'email',
-                  prompt : 'Ingrese un correo valido'
+                  prompt : 'Ingrese su correo'
                 }]
             },
             password: {
@@ -80,12 +82,7 @@
               rules: [{
                   type   : 'empty',
                   prompt : 'Ingrese su contraseña'
-                },
-                {
-                  type   : 'length[4]',
-                  prompt : 'Una contraseña valida es de al menos 4 caracteres'
-                }
-              ]
+                }]
             }
           }});
     });

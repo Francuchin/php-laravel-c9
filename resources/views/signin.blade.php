@@ -89,7 +89,7 @@
               identifier  : 'email',
               rules: [{
                   type   : 'empty',
-                  prompt : 'Ingrese su Correo'
+                  prompt : 'Ingrese su correo'
                 },
                 {
                   type   : 'email',
@@ -99,24 +99,17 @@
             password: {
               identifier  : 'password',
               rules: [{
-                  type   : 'empty',
-                  prompt : 'Ingrese su contraseña'
-                },
-                {
                   type   : 'length[4]',
                   prompt : 'Una contraseña valida es de al menos 4 caracteres'
-                }
-              ]
-            },
-            password: {
-              identifier  : 're_password',
-              rules: [{
-                  type   : 'match[password]',
+                },
+                {
+                  type   : 'match[re_password]',
                   prompt : 'Contraseñas no coinciden'
                 }
               ]
             }
-          }});
+          }
+        });
     });
   </script>
 </body>
