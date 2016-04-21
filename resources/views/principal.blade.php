@@ -31,50 +31,6 @@
 @stop
 @section('contenido')
 <div class="ui container">
-        <div class="ui items p60">
-            <div class="item">
-                <div class="content">
-                    <a class="header">Titulo de Participacion</a>
-                    <div class="ui segment">
-                        <div class="image">
-                        <div class="ui video" data-source="youtube" data-id="GvD3CHA48pA" data-icon="video" data-image="http://lorempixel.com/400/200/city"></div>
-                        </div>
-                    </div>
-                    <div class="description">
-                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras euismod velit eget libero dapibus pulvinar sed eu velit. Vestibulum congue leo diam, eget rhoncus eros rutrum vitae. Sed ut nunc odio. In non eros. 
-                    </div>
-                    <div class="extra"><i class="green check icon"></i> 121 Votos </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="content">
-                    <a class="header">Titulo de Participacion</a>
-                    <div class="ui segment">
-                        <div class="image">
-                        <div class="ui video" data-source="youtube" data-id="GvD3CHA48pA" data-icon="video" data-image="http://lorempixel.com/400/200/animals">
-                        </div></div>
-                    </div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras euismod velit eget libero dapibus pulvinar sed eu velit. Vestibulum congue leo diam, eget rhoncus eros rutrum vitae. Sed ut nunc odio. In non eros. 
-                    </div>
-                    <div class="extra"><i class="green check icon"></i> 0 Votos </div>
-                </div>                
-            </div>
-            <div class="item">
-                <div class="content">
-                    <a class="header">Titulo de Participacion</a>
-                    <div class="ui segment">
-                        <div class="image">
-                        <div class="ui video" data-source="youtube" data-id="GvD3CHA48pA" data-icon="video" data-image="http://lorempixel.com/400/200/sports">
-                        </div></div>
-                    </div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras euismod velit eget libero dapibus pulvinar sed eu velit. Vestibulum congue leo diam, eget rhoncus eros rutrum vitae. Sed ut nunc odio. In non eros. 
-                    </div>
-                    <div class="extra"><i class="green check icon"></i> 5 Votos </div>
-                </div>
-                
-            </div>
-        </div>
-    </div>
+    @include('listadoPrincipal')
+</div>
 @stop  

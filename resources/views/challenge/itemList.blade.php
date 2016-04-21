@@ -31,7 +31,7 @@
 @stop
 @section('contenido')
 <div class="ui container">
-        <div class="ui items p60">
+    <div class="ui items p60">
 	@include('challenge.item')
 	</div>
 </div>
