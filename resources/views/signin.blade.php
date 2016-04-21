@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>SignIn</title>
-    <script src="/js/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/semantic/semantic.css">
-    <script src="/semantic/semantic.js"></script>
+@extends('cuerpoHTML')
+@section('css')
+    @parent
   <style type="text/css">
     body {
       background-color: #DADADA;
@@ -19,12 +15,48 @@
       max-width: 450px;
     }
   </style>
-</head>
-<body>
+@stop
+@section('js')
+    @parent
+  <script>
+    $(document).ready(function() {
+        $('.ui.form').form({
+            fields: {
+              email: {
+                identifier  : 'email',
+                rules: [{
+                    type   : 'empty',
+                    prompt : 'Ingrese su correo'
+                  },
+                  {
+                    type   : 'email',
+                    prompt : 'Ingrese un correo valido'
+                  }]
+              },
+              password: {
+                identifier  : 'password',
+                rules: [{
+                    type   : 'length[4]',
+                    prompt : 'Una contraseña valida es de al menos 4 caracteres'
+                  },
+                  {
+                    type   : 'match[re_password]',
+                    prompt : 'Contraseñas no coinciden'
+                  }
+                ]
+              }
+            }
+          });
+      });
+    </script>
+@stop
+@section('barraMenu')
+@stop
+@section('contenido')
 <div class="ui middle aligned center aligned grid">
   <div class="column">
     <h1 class="ui black header">
-    <img class="ui image" src="/images/ico.png">
+    <img class="ui image iconoChallengeSombraNegro" src="/images/ico.png">
      <div class="content">
         Registro
       </div>
@@ -80,37 +112,4 @@
     </div>
   </div>
 </div>  
-
-<script>
-  $(document).ready(function() {
-      $('.ui.form').form({
-          fields: {
-            email: {
-              identifier  : 'email',
-              rules: [{
-                  type   : 'empty',
-                  prompt : 'Ingrese su correo'
-                },
-                {
-                  type   : 'email',
-                  prompt : 'Ingrese un correo valido'
-                }]
-            },
-            password: {
-              identifier  : 'password',
-              rules: [{
-                  type   : 'length[4]',
-                  prompt : 'Una contraseña valida es de al menos 4 caracteres'
-                },
-                {
-                  type   : 'match[re_password]',
-                  prompt : 'Contraseñas no coinciden'
-                }
-              ]
-            }
-          }
-        });
-    });
-  </script>
-</body>
-</html>
+@stop 

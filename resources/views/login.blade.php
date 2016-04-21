@@ -46,7 +46,7 @@
 <div class="ui middle aligned center aligned grid">
   <div class="column">
     <h1 class="ui black header">
-    <img class="ui image" src="/images/ico.png">
+    <img class="ui image iconoChallengeSombraNegro" src="/images/ico.png" >
      <div class="content">
         Ingresar
       </div>

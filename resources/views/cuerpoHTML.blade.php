@@ -8,6 +8,15 @@
 	<style type="text/css" media="screen">
     body {
         background-color: #DADADA;
+
+    }
+    .iconoChallengeSombraNegro{
+    	-webkit-filter: drop-shadow(0px 0px 5px black); 
+    	filter: drop-shadow(0px 0px 5px black);"
+    }
+    .iconoChallengeSombraBlanco{
+    	-webkit-filter: drop-shadow(0px 0px 5px white); 
+    	filter: drop-shadow(0px 0px 5px white);"
     }
 	</style>
 	@show
