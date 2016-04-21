@@ -12,6 +12,6 @@
     <div class="description">
         {{$challenge->description}}
     </div>
-        <div class="extra"><i class="green user icon"></i> 0 {{--$participantes--}} Participantes </div>
+        <div class="extra"><a ><i class="green user icon"></i> {{sizeof($challenge->participacions)}} Participantes </a></div>
     </div>
 </div>

@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Participacion extends Model
 {
      protected $table = 'participacions';
-     protected $fillable = ['titulo','video','descripcion'];
+     protected $fillable = ['title','video','description','id_user','id_challenge'];
      public function challenge(){
-         return $this->hasOne('App\Challenge');
+         return $this->belongsTo('App\Challenge','id_challenge');
          }
      public function user(){
          return $this->belongsTo('App\User','id_user');

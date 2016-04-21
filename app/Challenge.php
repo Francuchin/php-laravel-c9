@@ -12,4 +12,7 @@ class Challenge extends Model
     public function user(){
         return $this->belongsTo('App\User','id_user');
     }
+    public function participacions(){
+        return $this->hasMany('App\Participacion','id_challenge','id');
+    }
 }

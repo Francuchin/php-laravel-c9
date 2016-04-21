@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Challenge;
+use App\Participacion;
 use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
@@ -73,6 +74,22 @@ class DatabaseSeeder extends Seeder
                     'id_user' =>7
                 ));
         }
+
+        Participacion::create(array(
+                'title'=>'titulo participacion',
+                'video'=>'I4g1_fv0pSY',
+                'description'=>'descripcion de participacion ',
+                'id_user'=>2,
+                'id_challenge'=>21
+            ));
+        Participacion::create(array(
+                'title'=>'titulo participacion',
+                'video'=>'I4g1_fv0pSY',
+                'description'=>'descripcion de participacion ',
+                'id_user'=>1,
+                'id_challenge'=>21
+            ));
+
     }
 
 }

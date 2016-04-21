@@ -15,12 +15,15 @@ class CreateParticipacionsTable extends Migration
         Schema::create('participacions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_challenge')->unsigned();
-            $table->integer('id_usuario')->unsigned();
+            $table->integer('id_user')->unsigned();
+            $table->string('title'); 
+            $table->string('video'); 
+            $table->string('description');  
             $table->timestamps();            
             $table->foreign('id_challenge')
                 ->references('id')
                 ->on('challenges');
-            $table->foreign('id_usuario')
+            $table->foreign('id_user')
                 ->references('id')
                 ->on('users');
         });

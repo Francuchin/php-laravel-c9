@@ -29,5 +29,8 @@ class PaginasController extends Controller
             return view('login');
         }
     }
+    public function x(){
+       dd(Challenge::find(21)->participacions);
+    }
 
 }
