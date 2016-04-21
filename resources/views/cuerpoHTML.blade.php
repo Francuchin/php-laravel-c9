@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>@yield('title', 'Challenge Acepted')</title>
+	<title>@yield('title', 'Challenge Accepted')</title>
 	<link rel="icon" href="/images/ico.png" type="image/png"> 
 	@section('css')
 	<link rel="stylesheet" type="text/css" href="/semantic/semantic.css">
 	<style type="text/css" media="screen">
     body {
         background-color: #DADADA;
-
     }
     .iconoChallengeSombraNegro{
     	-webkit-filter: drop-shadow(0px 0px 5px black); 
@@ -28,5 +27,10 @@
 <body>
 @yield('barraMenu')
 @yield('contenido')
+@section('pie')
+	<div style="bottom: 0px; height: 20px;" >
+		
+	</div>
+@show
 </body>
 </html>

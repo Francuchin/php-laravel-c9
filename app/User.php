@@ -10,6 +10,6 @@ class User extends Model
     protected $fillable = ['first_name', 'last_name', 'email'];
     protected $guarded = ['id', 'password'];
     public function challenges(){
-        return $this->belongsToMany('App\Challenge');
+        return $this->hasMany('App\Challenge','id_user','id');
     }
 }

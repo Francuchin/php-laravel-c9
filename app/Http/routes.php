@@ -14,6 +14,7 @@ Route::get('/', 'PaginasController@index');
 Route::get('user/signin',function(){
     return view('signin');
 });
+Route::get('x','PaginasController@x');
 Route::get('challenges/{id}','ChallengeController@ver');
 Route::post('user/login','UserController@login');
 Route::get('user/logout','UserController@logout');

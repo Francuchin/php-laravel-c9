@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Challenge;
 use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
@@ -22,6 +23,12 @@ class DatabaseSeeder extends Seeder
                 'last_name' => 'Aramburu',
                 'password' => md5('1234'),
             ));
+        User::create(array(
+                'email' => 'algo@nada.com',
+                'first_name' => 'Nadie',
+                'last_name' => 'Alguien',
+                'password' => md5('1234'),
+            ));
         $faker = Faker\Factory::create('es_ES');
         for ($i = 0; $i < 9; $i++)
         {
@@ -32,5 +39,23 @@ class DatabaseSeeder extends Seeder
                 'password' => md5($faker->word),
             ));
         }
+        for ($i = 0; $i < 9; $i++)
+        {
+            Challenge::create(array(
+                    'title' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+                    'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+                    'id_user' =>1
+                ));
+        }
+        for ($i = 0; $i < 9; $i++)
+        {
+            Challenge::create(array(
+                    'title' => 'Desafio N°'.$i,
+                    'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+                    'id_user' =>2
+                ));
+        }
+        
     }
+
 }

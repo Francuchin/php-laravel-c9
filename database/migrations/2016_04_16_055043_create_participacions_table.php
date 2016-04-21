@@ -16,8 +16,7 @@ class CreateParticipacionsTable extends Migration
             $table->increments('id');
             $table->integer('id_challenge')->unsigned();
             $table->integer('id_usuario')->unsigned();
-            $table->timestamps();
-            
+            $table->timestamps();            
             $table->foreign('id_challenge')
                 ->references('id')
                 ->on('challenges');
