@@ -47,15 +47,32 @@ class DatabaseSeeder extends Seeder
                     'id_user' =>1
                 ));
         }
-        for ($i = 0; $i < 9; $i++)
+        for ($i = 0; $i < 3; $i++)
         {
             Challenge::create(array(
                     'title' => 'Desafio N°'.$i,
                     'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
                     'id_user' =>2
                 ));
+            Challenge::create(array(
+                    'title' => $faker->sentence($nbWords = $i+1, $variableNbWords = false),
+                    'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+                    'id_user' =>3
+                ));
         }
-        
+        for ($i = 0; $i < 3; $i++)
+        {
+            Challenge::create(array(
+                    'title' => $faker->sentence($nbWords = 3, $variableNbWords = true),
+                    'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+                    'id_user' =>5
+                ));
+            Challenge::create(array(
+                    'title' => $faker->sentence($nbWords = 2, $variableNbWords = true),
+                    'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+                    'id_user' =>7
+                ));
+        }
     }
 
 }

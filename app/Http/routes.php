@@ -11,6 +11,7 @@
 |
 */
 Route::get('/', 'PaginasController@index');
+Route::get('/yo', 'PaginasController@misDesafios');
 Route::get('user/signin',function(){
     return view('signin');
 });
