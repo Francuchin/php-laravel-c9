@@ -37,8 +37,8 @@
                     <a class="header">Titulo de Participacion</a>
                     <div class="ui segment">
                         <div class="image">
-                        <div class="ui video" data-source="youtube" data-id="GvD3CHA48pA" data-icon="video" data-image="http://lorempixel.com/400/200/city">
-                        </div></div>
+                        <div class="ui video" data-source="youtube" data-id="GvD3CHA48pA" data-icon="video" data-image="http://lorempixel.com/400/200/city"></div>
+                        </div>
                     </div>
                     <div class="description">
                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras euismod velit eget libero dapibus pulvinar sed eu velit. Vestibulum congue leo diam, eget rhoncus eros rutrum vitae. Sed ut nunc odio. In non eros. 

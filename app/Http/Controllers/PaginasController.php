@@ -14,11 +14,4 @@ class PaginasController extends Controller
             return view('login');
         }
     }
-    public function nuevoChallenge(){
-    	 if (Session::has('user_id')) {
-            return view('challenge.new');
-        }else{
-            return view('login');
-        }
-    }
 }

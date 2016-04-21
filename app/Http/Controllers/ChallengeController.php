@@ -30,7 +30,11 @@ class ChallengeController extends Controller
      */
     public function create()
     {
-        //
+        if (Session::has('user_id')) {
+            return view('challenge.new');
+        }else{
+            return view('login');
+        }
     }
 
     /**
@@ -41,12 +45,12 @@ class ChallengeController extends Controller
      */
     public function store(Request $request)
     {
-
-          $user = new Challenge;
-          $user->description = Input::get('description'); 
-          $user->id_user =  Session::get('user_id'); 
-          $user->save();
-          return Redirect::to('/');
+          $Challenge = new Challenge;
+          $Challenge->title = Input::get('title'); 
+          $Challenge->description = Input::get('description'); 
+          $Challenge->id_user =  Session::get('user_id'); 
+          $Challenge->save();
+          echo $Challenge->id;
     }
 
     /**
@@ -57,9 +61,15 @@ class ChallengeController extends Controller
      */
     public function show($id)
     {
-        //
+        return Challenge::find($id);
     }
-
+    public function ver($id){
+        $challenge = Challenge::find($id);
+        if($challenge == null){
+           return Redirect::to('/challenge/create');
+        }
+        return view('challenge.itemList')->with('challenge', $challenge);
+    }
     /**
      * Show the form for editing the specified resource.
      *

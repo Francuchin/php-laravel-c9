@@ -14,8 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         
-        //php artisan migrate:refresh --seed
-        
+        //php artisan migrate:refresh --seed        
         //$this->call(UsersTableSeeder::class);
         User::create(array(
                 'email' => 'francuchin@gmail.com',

@@ -11,11 +11,12 @@
 |
 */
 Route::get('/', 'PaginasController@index');
-Route::get('challenge/create','PaginasController@nuevoChallenge');
 Route::get('user/signin',function(){
     return view('signin');
 });
+Route::get('challenges/{id}','ChallengeController@ver');
 Route::post('user/login','UserController@login');
 Route::get('user/logout','UserController@logout');
 Route::post('user/showByEmail/{email}','UserController@showByEmail');
 Route::resource('user', 'UserController');
+Route::resource('challenge', 'ChallengeController');
