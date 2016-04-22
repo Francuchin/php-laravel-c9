@@ -11,9 +11,12 @@
 |
 */
 Route::get('/', 'PaginasController@index');
-Route::get('/yo', 'PaginasController@misDesafios');
+Route::get('/I', 'PaginasController@misDesafios');
 Route::get('user/signin',function(){
     return view('signin');
+});
+Route::get('profile',function(){
+	return view('user.profile');
 });
 Route::get('x','PaginasController@x');
 Route::get('challenges/{id}','ChallengeController@ver');

@@ -28,7 +28,7 @@
 @yield('barraMenu')
 @yield('contenido')
 @section('pie')
-	<div style="bottom: 0px; height: 20px;" >
+	<div style="bottom: 0px;">
 		
 	</div>
 @show

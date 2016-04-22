@@ -10,7 +10,6 @@ use DB;
 class PaginasController extends Controller
 {
     public function index(){
-
     	// aca usaste para arreglar todo lo inarreglable-->  composer dump-autoload
         if (Session::has('user_id')) {
         	$items = Challenge::where('id_user', '!=', Session::get('user_id'))->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->get();
@@ -24,7 +23,7 @@ class PaginasController extends Controller
     public function misDesafios(){
     	if (Session::has('user_id')) {
         	$items = Challenge::where('id_user', '=', Session::get('user_id'))->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->get();
-        	 return view('principal')->with('items', $items);
+        	 return view('user.profile')->with('items', $items)->with('profile',User::find(Session::get('user_id')));
         }else{
             return view('login');
         }

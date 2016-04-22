@@ -12,6 +12,22 @@
     <div class="description">
         {{$challenge->description}}
     </div>
-        <div class="extra"><a ><i class="green user icon"></i> {{sizeof($challenge->participacions)}} Participantes </a></div>
+    <?php
+     $participacions=$challenge->participacions;
+     $usuarios = array();
+     $x = 0;
+    ?>
+    <div class="menu">
+        <div class="extra @if(sizeof($participacions)>0) browse @endif"><a><i class="green user icon"></i> {{sizeof($participacions)}} Participantes </a></div>
+            <div class="ui popup bottom inverted transition hidden">
+            @foreach ($participacions as $p)
+            <?php 
+            echo '<a>'.$p->user->full_name().'</a><br>';
+            $x++;
+            if($x == 2) break;
+           ?>
+            @endforeach
+            </div>
+        </div>
     </div>
 </div>

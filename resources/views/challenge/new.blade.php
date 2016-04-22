@@ -45,7 +45,7 @@
         <div class="ui medium black button" onclick="javascript:crearDesafio()"><i class="save icon"></i> Crear</div>
       </div>
     </form>
-    <div id="progreso">askljdhasñkjdlhañsklj</div>
+    <div id="progreso"></div>
 </div>  
 @stop 
 
