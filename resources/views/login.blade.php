@@ -51,7 +51,7 @@
         Ingresar
       </div>
     </h1>
-       @if ($errors->has('mensaje'))
+      @if ($errors->has('mensaje'))
        <div class="ui error message">
          <div class="header">{{$errors->first('mensaje')}}</div>
        </div>

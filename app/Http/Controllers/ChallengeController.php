@@ -20,7 +20,7 @@ class ChallengeController extends Controller
     public function index()
     {
         //dd(Input::all());
-        return view('challenge.exit');
+        return view('challenge.success');
     }
 
     /**
@@ -68,7 +68,7 @@ class ChallengeController extends Controller
         if($challenge == null){
            return Redirect::to('/challenge/create');
         }
-        return view('challenge.itemList')->with('challenge', $challenge);
+        return view('challenge.show')->with('challenge', $challenge);
     }
     /**
      * Show the form for editing the specified resource.

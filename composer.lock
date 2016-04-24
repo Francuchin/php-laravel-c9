@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1e8d1607c83ecdb18f36e433b3bbc1d3",
-    "content-hash": "6f26f9e30443f2dcd293a37d103b3a70",
+    "hash": "935c644b88d6a06591549b130cb45aa5",
+    "content-hash": "5218500e80aa836bb9e1a66190314a68",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -351,6 +351,49 @@
                 "tokenizer"
             ],
             "time": "2015-12-05 17:17:57"
+        },
+        {
+            "name": "jimmiw/php-time-ago",
+            "version": "0.4.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jimmiw/php-time-ago.git",
+                "reference": "f7fb8b5e25a58a12d0e04400eadf2c1420db4359"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jimmiw/php-time-ago/zipball/f7fb8b5e25a58a12d0e04400eadf2c1420db4359",
+                "reference": "f7fb8b5e25a58a12d0e04400eadf2c1420db4359",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=4"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "timeago.inc.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jimmi Westerberg",
+                    "homepage": "http://www.westsworld.dk",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple module, that displays the date in a \"time ago\" format",
+            "homepage": "https://github.com/jimmiw/php-time-ago",
+            "keywords": [
+                "distance of time",
+                "time ago",
+                "time ago in words"
+            ],
+            "time": "2016-03-30 13:17:34"
         },
         {
             "name": "laravel/framework",

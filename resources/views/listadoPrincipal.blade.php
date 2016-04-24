@@ -1,4 +1,5 @@
 <div class="ui items p60">
+<?php $timeAgo = new TimeAgo('Etc/GMT', 'es')?>
 @foreach ($items as $item)
    @include('challenge.item', array('challenge'=>$item))
 @endforeach

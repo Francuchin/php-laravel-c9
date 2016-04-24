@@ -64,7 +64,7 @@
     @if (count($errors) > 0)
        <div class="ui error message">
       @foreach ($errors->all() as $error)
-      <div class="header">This is user {{$error}}</div>
+      <div class="header">{{$error}}</div>
       @endforeach
       </div>
     @endif

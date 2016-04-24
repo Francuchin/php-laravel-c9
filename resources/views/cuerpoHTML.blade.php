@@ -17,6 +17,27 @@
     	-webkit-filter: drop-shadow(0px 0px 5px white); 
     	filter: drop-shadow(0px 0px 5px white);"
     }
+    .linkUser{
+    	color: hsla(0, 0%, 25%, 0.6);
+    	font-size: 0.8em;
+    }
+    .linkUser:before{
+    	content: " ~ ";
+    }
+    .linkUser:hover{
+    	color: hsla(0, 0%, 25%, 0.9);
+    	font-size: 0.9em;
+    }
+    .descriptionChallenge{
+    	font-style: oblique;
+    }
+    .timeAgo{
+    	color: hsla(0, 0%, 25%, 0.6);
+    	font-size: 0.65em;
+    }
+    .timeAgo:before{
+    	content: " ~ ";
+    }
 	</style>
 	@show
 	@section('js')

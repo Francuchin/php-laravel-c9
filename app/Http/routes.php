@@ -12,16 +12,17 @@
 */
 Route::get('/', 'PaginasController@index');
 Route::get('/I', 'PaginasController@misDesafios');
-Route::get('user/signin',function(){
-    return view('signin');
-});
-Route::get('profile',function(){
-	return view('user.profile');
-});
+//prueba
 Route::get('x','PaginasController@x');
-Route::get('challenges/{id}','ChallengeController@ver');
+Route::get ('challenge/create','ChallengeController@create');
+Route::get ('challenge/{id}/accepting','ParticipacionController@create');
+Route::get ('challenge/{id}','ChallengeController@ver');
+Route::get ('user/logout','UserController@logout');
+Route::get ('user/signin',function(){return view('signin');});
+Route::post ('accepting','ParticipacionController@store');
 Route::post('user/login','UserController@login');
-Route::get('user/logout','UserController@logout');
 Route::post('user/showByEmail/{email}','UserController@showByEmail');
-Route::resource('user', 'UserController');
-Route::resource('challenge', 'ChallengeController');
+Route::resource('user', 'UserController', ['except' => ['create','show','edit','index','update', 'destroy']]);
+Route::post ('challenge','ChallengeController@store');
+//Route::resource('challenge', 'ChallengeController', ['except' => ['create','show','edit','index','update', 'destroy']]);
+Route::get('/{id}','PaginasController@visitarPerfil');

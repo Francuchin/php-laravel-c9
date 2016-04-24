@@ -7,6 +7,9 @@
                border-left:solid 1px rgba(0,0,0,0.2)!important;
                border-right:solid 1px rgba(0,0,0,0.2)!important;
         }
+        .ui.items{
+            margin-top: 0px!important;
+        }
         .items>.item{
             padding: 10px!important;
             background-color: rgb(200,200,200)!important;
@@ -58,7 +61,12 @@
         box-shadow: 0px 0px 2px black;
         display: inline-block; 
         }
-
+        .barraUser{
+            margin-top: 0px!important;
+            background-color: transparent!important;
+            box-shadow: none!important;
+            border: none!important;
+        }
         @media (min-width: 768px) {
             .portada > .datos{
                 left: 5%;
@@ -96,6 +104,11 @@
             </div>
         </div>
     </div>
+    <?php 
+        $items = $profile->challenges('id','desc')->get();
+        $selfProfile = (Session::get('user_id') == $profile->id);
+    ?>
+    @include('user.menu')    
     @include('listadoPrincipal')
 </div>
 @stop  

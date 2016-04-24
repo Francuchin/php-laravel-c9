@@ -134,6 +134,7 @@ class UserController extends Controller
         }else{
             if(md5($password) == $user->password){
                 Session::put('user_id', $user->id);
+                Session::put('user', $user);
                 // dd(session('user_id'));
                 // return Redirect::back();
                 return Redirect::to('/');

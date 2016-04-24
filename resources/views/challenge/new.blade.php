@@ -4,7 +4,7 @@
 @stop
 @section('js')
     @parent
-    <script>
+ <script>
     function crearDesafio() {
       var xhttp;
       var title = document.getElementById('title').value;
@@ -14,7 +14,7 @@
          document.getElementById("progreso").innerHTML = "<div class='ui active inverted dimmer'><div class='ui large text loader'>Loading</div></div>";
       };
       xhttp.onload = function () {
-        window.location.href = '/challenges/'+ xhttp.responseText;
+        window.location.href = '/challenge/'+ xhttp.responseText;
       };
       xhttp.open("post", "/challenge", true); 
       xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
