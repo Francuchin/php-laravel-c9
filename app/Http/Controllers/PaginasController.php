@@ -39,7 +39,10 @@ class PaginasController extends Controller
     }
 
     public function x(){
-       dd(Challenge::find(23)->userParticipa(2)->get());
+        DB::enableQueryLog();
+        echo "<pre>";
+        var_dump(User::find(1)->imagenesPortada());
+        var_dump(DB::getQueryLog());//Challenge::find(21)->imagen());
     }
 
 }

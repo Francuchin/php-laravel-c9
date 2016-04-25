@@ -14,4 +14,7 @@ class Participacion extends Model
      public function user(){
          return $this->belongsTo('App\User','id_user');
          }
+    public function imagen(){
+        return DB::table('img_participacions','id_participacion','id')->get();
+    	}
 }

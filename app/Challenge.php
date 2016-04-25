@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 class Challenge extends Model
 {
     protected $table = 'challenges';
@@ -16,8 +16,12 @@ class Challenge extends Model
     public function participacions(){
         return $this->hasMany('App\Participacion','id_challenge','id');
     }
-    public function userParticipa($user){
+    //devulve true o false si un usuario participa o no en un desafio
+    public function userParticipa($id_user){
     	return (sizeof($this	->hasMany('App\Participacion','id_challenge','id' )
-            	->where('participacions.id_user','=',$user)->get()) == 1);
+            	->where('participacions.id_user','=',$id_user)->get()) == 1);
+    }
+    public function imagen(){
+        return DB::table('img_challenges','id_challenge','id')->get();
     }
 }

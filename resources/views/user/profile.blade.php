@@ -23,7 +23,7 @@
         }
        .portada{
         height: 250px; 
-        background-image: url('http://i47.tinypic.com/28qrpra.jpg');
+        background-image: url('{{$profile->imagenPortada()}}');
         background-repeat: no-repeat;
         background-position: center center;
         background-attachment: center;
@@ -56,8 +56,8 @@
         .portada > .datos > img{
         width: 150px;
         height: 150px;
-        background-color: rgba(255,255,255,0.6);
-        border:solid 5px rgba(255,255,255,0.5);
+        background-color: rgba(255,255,255,0);
+        border:solid 5px rgba(255,255,255,0.4);
         box-shadow: 0px 0px 2px black;
         display: inline-block; 
         }
@@ -96,7 +96,7 @@
 <div class="ui container">
     <div class="ui fluid portada">
         <div class="datos">
-            <img  src="http://i47.tinypic.com/28qrpra.jpg">  
+            <img  src="{{ $profile->imagenPerfil()}}">  
             <div class="usuario">
                 {{$profile->full_name()}} <br>
                 <spam>{{$profile->email}}</spam> <br>

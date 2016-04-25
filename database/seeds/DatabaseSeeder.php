@@ -43,8 +43,8 @@ class DatabaseSeeder extends Seeder
         for ($i = 0; $i < 9; $i++)
         {
             Challenge::create(array(
-                    'title' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-                    'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+                    'title' => $faker->realText($maxNbChars = 10, $indexSize = 2),
+                    'description' => $faker->realText($maxNbChars = 50, $indexSize = 2),
                     'id_user' =>1
                 ));
         }
@@ -56,36 +56,36 @@ class DatabaseSeeder extends Seeder
                     'id_user' =>2
                 ));
             Challenge::create(array(
-                    'title' => $faker->sentence($nbWords = $i+1, $variableNbWords = false),
-                    'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+                    'title' => $faker->realText($maxNbChars = 10, $indexSize = 2),
+                    'description' => $faker->realText($maxNbChars = 50, $indexSize = 2),
                     'id_user' =>3
                 ));
         }
         for ($i = 0; $i < 3; $i++)
         {
             Challenge::create(array(
-                    'title' => $faker->sentence($nbWords = 3, $variableNbWords = true),
-                    'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+                    'title' => $faker->realText($maxNbChars = 10, $indexSize = 2),
+                    'description' => $faker->realText($maxNbChars = 50, $indexSize = 2),
                     'id_user' =>5
                 ));
             Challenge::create(array(
-                    'title' => $faker->sentence($nbWords = 2, $variableNbWords = true),
-                    'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+                    'title' => $faker->realText($maxNbChars = 10, $indexSize = 2),
+                    'description' => $faker->realText($maxNbChars = 50, $indexSize = 2),
                     'id_user' =>7
                 ));
         }
 
         Participacion::create(array(
-                'title'=>'titulo participacion',
+                'title'=>'Primer titulo participacion',
                 'video'=>'I4g1_fv0pSY',
-                'description'=>'descripcion de participacion ',
+                'description'=>$faker->realText($maxNbChars = 50, $indexSize = 2),
                 'id_user'=>2,
                 'id_challenge'=>21
             ));
         Participacion::create(array(
-                'title'=>'titulo participacion',
+                'title'=>'Segundo titulo participacion',
                 'video'=>'I4g1_fv0pSY',
-                'description'=>'descripcion de participacion ',
+                'description'=>$faker->realText($maxNbChars = 50, $indexSize = 2),
                 'id_user'=>1,
                 'id_challenge'=>21
             ));
