@@ -30,7 +30,7 @@
         </div>
         <div class="field">
           <div class="ui left icon input">
-            <i class="video play outline icon"></i>
+            <i class="photo icon"></i>
             <input type="text" name="video" id="video" placeholder="Video"><br>
           </div>
         </div>
