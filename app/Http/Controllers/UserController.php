@@ -62,6 +62,7 @@ class UserController extends Controller
           $user->save();
          // Session::flash('message', 'Usuario creado'); no se que es XD
           Session::put('user_id', $user->id);
+          Session::put('user', $user);
           return Redirect::to('/');
         }
     }

@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="/semantic/semantic.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.grey-pink.min.css" />
-    <link rel="stylesheet" href="styles.css" />
+    
 
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
