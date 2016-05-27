@@ -14,8 +14,19 @@ class PaginasController extends Controller
     	// aca usaste para arreglar todo lo inarreglable-->  composer dump-autoload
         if (Session::has('user_id')) {
         	$items = Challenge::where('id_user', '!=', Session::get('user_id'))->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->get();
-        	//$items = User::find(Session::get('user_id'))->challenges; //falta ordenar
-            return view('principal')->with('items', $items);
+            $desafiosSeguidos = collect([]);
+            $usersSiguiendo = Session::get('user')->siguiendo();
+            foreach ($usersSiguiendo as $usuarioSeguido) {
+                $des = $usuarioSeguido->challenges()->get();
+                $desafiosSeguidos = $desafiosSeguidos->merge($des);
+            }
+        	//$items = User::find(Session::get('user_id'))->challenges;
+            return view('principal')
+                    ->with('items', $items)
+                    ->with('dasafiosSeguidos', $desafiosSeguidos
+                                                ->sortBy('id')
+                                                ->sortBy('created_at')
+                    );
         }else{
             return view('login');
         }
@@ -28,10 +39,9 @@ class PaginasController extends Controller
             return redirect('/');
         }
     }
+
     public function misDesafios(){
     	if (Session::has('user_id')) {
-        	//$items = Challenge::where('id_user', '=', Session::get('user_id'))->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->get();
-            //$items = Session::get('user')->challenges;
         	 return view('user.profile')->with('profile',Session::get('user'));
         }else{
             return redirect('/');

@@ -150,4 +150,23 @@ class UserController extends Controller
         Session::flush();
         return Redirect::to('/');
     }
+
+    public function seguir($seguido,$seguidor){
+        $user_seguidor = User::find($seguidor);
+        $user_seguido = User::find($seguido);
+        if($user_seguido == null || $user_seguidor==null){
+            return json_encode(['resultado' => 'error']);
+        }
+        $user_seguidor->seguir($seguido);
+        return json_encode(['resultado' => 'ok']);
+    }
+    public function dejar_seguir($seguido,$seguidor){
+        $user_seguidor = User::find($seguidor);
+        $user_seguido = User::find($seguido);
+        if($user_seguido == null || $user_seguidor==null){
+            return json_encode(['resultado' => 'error']);
+        }
+        $user_seguidor->dejar_seguir($seguido);
+        return json_encode(['resultado' => 'ok']);
+    }
 }

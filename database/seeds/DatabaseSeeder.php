@@ -25,9 +25,9 @@ class DatabaseSeeder extends Seeder
                 'password' => md5('1234'),
             ));
         User::create(array(
-                'email' => 'algo@nada.com',
-                'first_name' => 'Nadie',
-                'last_name' => 'Alguien',
+                'email' => 'pedro@romero.com',
+                'first_name' => 'Virgilio',
+                'last_name' => 'Romero',
                 'password' => md5('1234'),
             ));
         $faker = Faker\Factory::create('es_ES');

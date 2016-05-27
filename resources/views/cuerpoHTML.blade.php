@@ -9,11 +9,22 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.grey-blue.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<style type="text/css" media="screen">
-    
+    .container{
+               /*
+               border-left:solid 1px rgba(0,0,0,0.2)!important;
+               border-right:solid 1px rgba(0,0,0,0.2)!important;
+               */
+        }
     .ui.fixed.menu{
         background-color: rgb(68,138,255);
         border: solid 1px rgba(0,0,0,.1);
         box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+    }
+    .ui.menu .item::before {
+        position: fixed;
+    }
+    .ui.menu:not(.secondary):not(.text):not(.tabular):not(.borderless) > .container > .item:first-child:not(.right):not(.borderless) {
+        border-left: none;
     }
     .ui.fixed.menu>.ui.container>.item{
         color: white;

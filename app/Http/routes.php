@@ -26,3 +26,5 @@ Route::resource('user', 'UserController', ['except' => ['create','show','edit','
 Route::post ('challenge','ChallengeController@store');
 //Route::resource('challenge', 'ChallengeController', ['except' => ['create','show','edit','index','update', 'destroy']]);
 Route::get('/{id}','PaginasController@visitarPerfil');
+Route::post('user/seguir/{seguido}/{seguidor}', 'UserController@seguir');
+Route::post('user/dejar_seguir/{seguido}/{seguidor}', 'UserController@dejar_seguir');

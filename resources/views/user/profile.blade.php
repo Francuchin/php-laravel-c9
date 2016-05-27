@@ -4,8 +4,10 @@
     <link rel="stylesheet" type="text/css" href="/semantic/components/video.css">
     <style type="text/css">
         .container{
+               /*
                border-left:solid 1px rgba(0,0,0,0.2)!important;
                border-right:solid 1px rgba(0,0,0,0.2)!important;
+               */
         }
         .ui.items{
             margin-top: 0px!important;
@@ -28,6 +30,8 @@
             background-position: center center;
             background-attachment: center;
             background-size: cover;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
             box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
        }
        .portada > .datos{
@@ -104,12 +108,17 @@
                 <spam>Desafios creados: {{sizeOf($profile->challenges)}}</spam> <br>
             </div>
         </div>
+        <?php if(Session::get('user_id') == $profile->id){?>
+                
+        <?php }else{?>  
+                
+        <?php }?>
     </div>
+    <div style="height:20px;"></div>
     <?php 
         $items = $profile->challenges('id','desc')->get();
         $selfProfile = (Session::get('user_id') == $profile->id);
-    ?>
-    @include('user.menu')    
+    ?>   
     @include('listadoPrincipal')
 </div>
 @stop  
