@@ -1,17 +1,8 @@
-<div class="ui menu barraUser">
+<div class="ui menu barraUser ">
+          <a href="#overview" class="mdl-layout__tab is-active">SEGUIR</a>
+          <a href="#features" class="mdl-layout__tab">otra cosa</a>
+          <a href="#features" class="mdl-layout__tab">mas</a>
 <?php if(Session::get('user_id') != $profile->id){?>
-	<div class="ui right menu fade animated button" tabindex="0">
-		<div class="visible content">Seguir</div>
-		<div class="hidden content">
-			<i class="right arrow icon"></i>
-		</div>
-	</div>
-<?php }else{?>
-	<div class="ui right menu fade animated button" tabindex="0">
-		<div class="visible content">Editar Perfil</div>
-		<div class="hidden content">
-			<i class="edit icon"></i>
-		</div>
-	</div>	
+<?php }else{?>	
 <?php }?>
 </div>

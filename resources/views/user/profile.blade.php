@@ -22,60 +22,61 @@
             margin-bottom: 25px;
         }
        .portada{
-        height: 250px; 
-        background-image: url('{{$profile->imagenPortada()}}');
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-attachment: center;
-        background-size: 100% auto;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-        border-bottom:solid 2px hsl(0.0, 0.0%, 50%);
+            height: 300px; 
+            background-image: url('{{$profile->imagenPortada()}}');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: center;
+            background-size: cover;
+            box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
        }
        .portada > .datos{
-        position: relative;
-        top: 120px;
-        left: 35%;
-        height: 150px;
+            position: relative;
+            top: 50%;
+            left: 35%;
+            height: 150px;
+
        }
        .portada > .datos > .usuario{
-        margin-left: 1ex;
-        visibility: hidden;
-        display: inline-block;
-        color: white;
-        font-size: 2em;
-        font-weight: bold;
-        font-variant: small-caps;
-        font-family: "Times New Roman", Times, serif;
-        text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
-        vertical-align: 5ex;
+            margin-left: 1ex;
+            visibility: hidden;
+            display: inline-block;
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
+            font-variant: small-caps;
+            font-family: "Times New Roman", Times, serif;
+            text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+            vertical-align: 5ex;
        }
        .portada > .datos > .usuario > spam{
-        font-size: 0.6em;
+            font-size: 0.6em;
        }
         .portada > .datos > img{
-        width: 150px;
-        height: 150px;
-        background-color: rgba(255,255,255,0);
-        border:solid 5px rgba(255,255,255,0.4);
-        box-shadow: 0px 0px 2px black;
-        display: inline-block; 
+            vertical-align:inherit;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(255,255,255,0);
+            border:solid 5px rgba(255,255,255,0.4);
+            box-shadow: 0px 0px 2px black;
+            display: inline-block; 
         }
         .barraUser{
             margin-top: 0px!important;
             background-color: transparent!important;
             box-shadow: none!important;
             border: none!important;
+            top:-100%;
         }
         @media (min-width: 768px) {
+            .portada{
+                background-size: 100% auto;
+            }
             .portada > .datos{
                 left: 5%;
             }
             .portada > .datos > .usuario{
                 visibility: visible;
-            }
-            .p60 {
-                width: 60%;
             }
         }
     </style>
@@ -96,7 +97,7 @@
 <div class="ui container">
     <div class="ui fluid portada">
         <div class="datos">
-            <img  src="{{ $profile->imagenPerfil()}}">  
+            <img  src="{{$profile->imagenPerfil()}}">  
             <div class="usuario">
                 {{$profile->full_name()}} <br>
                 <spam>{{$profile->email}}</spam> <br>
