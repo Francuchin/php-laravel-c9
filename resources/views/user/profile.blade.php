@@ -119,6 +119,6 @@
         $items = $profile->challenges('id','desc')->get();
         $selfProfile = (Session::get('user_id') == $profile->id);
     ?>   
-    @include('listadoPrincipal')
+    @include('user.listado')
 </div>
 @stop  
