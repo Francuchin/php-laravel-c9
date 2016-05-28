@@ -3,7 +3,7 @@
     @parent
 @stop
 @section('js')
-    @parent
+@parent
  <script>
     function crearDesafio() {
       var xhttp;

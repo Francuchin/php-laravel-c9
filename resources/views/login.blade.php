@@ -3,7 +3,8 @@
     @parent
   <style type="text/css">
     body {
-      background-color: #DADADA;
+      background-image: url(http://2.bp.blogspot.com/-moTj4cCtCIg/Uka2cLz4a-I/AAAAAAAAXtc/io9Qv5f2k6c/s1600/Fondos+Wallpaper+Gratis+Abstractos+%2528122%2529.jpg);
+      background-size: 100% 100%;
     }
     body > .grid {
       height: 100%;
@@ -13,6 +14,19 @@
     }
     .column {
       max-width: 450px;
+      padding: 5px;
+      border-radius: 3px;
+      background-color: rgb(68,138,255)!important;
+    }
+    .button{
+      background-color: rgb(68,138,255)!important;      
+    }
+    .message, .column, .stacked, .button{
+      border: solid 1px rgba(0,0,0,.1)!important;
+      box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2)!important;    
+    }
+    .input{
+      box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2)!important; 
     }
   </style>
 @stop
@@ -46,7 +60,7 @@
 <div class="ui middle aligned center aligned grid">
   <div class="column">
     <h1 class="ui black header">
-    <img class="ui image iconoChallengeSombraNegro" src="/images/ico.png" >
+    <img class="ui image " src="/images/ico.png" >
      <div class="content">
         Ingresar
       </div>

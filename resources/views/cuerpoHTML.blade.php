@@ -121,6 +121,12 @@
 @yield('contenido')
 @section('pie')
 	<div class="footer"></div>
+    <script type="text/javascript">
+        var anchors_tabs = document.getElementsByClassName('mdl-tabs__tab');
+        Array.prototype.forEach.call(anchors_tabs, function(anchor, index) {
+            anchors_tabs[index].href = anchors_tabs[index].dataset.link;
+        });
+    </script>
 @show
 </body>
 </html>

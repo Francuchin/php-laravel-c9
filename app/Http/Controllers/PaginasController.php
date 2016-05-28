@@ -13,7 +13,7 @@ class PaginasController extends Controller
     public function index(){
     	// aca usaste para arreglar todo lo inarreglable-->  composer dump-autoload
         if (Session::has('user_id')) {
-        	$items = Challenge::where('id_user', '!=', Session::get('user_id'))->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->get();
+        	$items = Challenge::where('id_user', '!=', Session::get('user_id'))->orderByRaw('RAND()')->get();
             $desafiosSeguidos = collect([]);
             $usersSiguiendo = Session::get('user')->siguiendo();
             foreach ($usersSiguiendo as $usuarioSeguido) {

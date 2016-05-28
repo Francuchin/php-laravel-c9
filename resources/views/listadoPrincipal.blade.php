@@ -1,22 +1,26 @@
 <?php $timeAgo = new TimeAgo('Etc/GMT', 'es')?>
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
   <div class="mdl-tabs__tab-bar">
-      <a href="#principal-panel" class="mdl-tabs__tab is-active">Principal</a>
-      <a href="#siguiendo-panel" class="mdl-tabs__tab">Siguiendo</a>
-      <a href="#" class="mdl-tabs__tab">+</a>
+      <a data-link="#principal-panel" class="mdl-tabs__tab">Principal</a>
+      <a data-link="#siguiendo-panel" class="mdl-tabs__tab is-active">Siguiendo</a>
+      <a data-link="#" class="mdl-tabs__tab">+</a>
   </div>
-  <div class="mdl-tabs__panel is-active" id="principal-panel">
+  <div class="mdl-tabs__panel" id="principal-panel">
 	<div class="mdl-grid">
 	@foreach ($items as $item)
 	   @include('challenge.item', array('challenge'=>$item))
 	@endforeach
 	</div>
   </div>
-  <div class="mdl-tabs__panel" id="siguiendo-panel">
+  <div class="mdl-tabs__panel is-active" id="siguiendo-panel">
 	<div class="mdl-grid">
-	@foreach ($dasafiosSeguidos as $item)
-	   @include('challenge.item', array('challenge'=>$item))
-	@endforeach
+  @if(isset($dasafiosSeguidos[0]))
+  	@foreach ($dasafiosSeguidos as $item)
+  	   @include('challenge.item', array('challenge'=>$item))
+  	@endforeach
+  @else
+    <p>No hay desafios de usuarios que sigas</p>
+  @endif
 	</div>
   </div>
 </div>

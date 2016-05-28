@@ -108,13 +108,7 @@
                 <spam>Desafios creados: {{sizeOf($profile->challenges)}}</spam> <br>
             </div>
         </div>
-        <?php if(Session::get('user_id') == $profile->id){?>
-                
-        <?php }else{?>  
-                
-        <?php }?>
     </div>
-    <div style="height:20px;"></div>
     <?php 
         $items = $profile->challenges('id','desc')->get();
         $selfProfile = (Session::get('user_id') == $profile->id);
