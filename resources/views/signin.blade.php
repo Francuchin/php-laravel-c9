@@ -3,7 +3,7 @@
     @parent
   <style type="text/css">
     body {
-      background-image: url(http://2.bp.blogspot.com/-moTj4cCtCIg/Uka2cLz4a-I/AAAAAAAAXtc/io9Qv5f2k6c/s1600/Fondos+Wallpaper+Gratis+Abstractos+%2528122%2529.jpg);
+      background-image: url(/images/fondo.jpg);
       background-size: 100% 100%;
     }
     body > .grid {

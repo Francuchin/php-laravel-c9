@@ -6,8 +6,8 @@
 	@section('css')
 	<link rel="stylesheet" type="text/css" href="/semantic/semantic.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.grey-blue.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/css/material.grey-blue.min.css" />
+    <link rel="stylesheet" href="/css/icon.css">
 	<style type="text/css" media="screen">
     .container{
                /*
@@ -113,7 +113,7 @@
 	@section('js')
 	<script src="/js/jquery.min.js"></script>
 	<script src="/semantic/semantic.js"></script>    
-    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    <script src="/js/material.min.js"></script>
 	@show
 </head>
 <body>
