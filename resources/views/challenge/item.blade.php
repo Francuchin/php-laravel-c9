@@ -4,7 +4,7 @@
     $x = 0;
 ?>
 <div class="mdl-cell mdl-card mdl-shadow--4dp">
-<div class="mdl-card__title" style="height: 400px; background-image: url('http://lorempixel.com/600/400/city/{{$challenge->id % 10}}')">    
+<div class="mdl-card__title" style="height: 300px; background-image: url('http://lorempixel.com/600/300/city/{{$challenge->id % 10}}')">    
     @if($challenge->user->id != Session::get('user_id'))
     <div class="mdl-card__data-user">
         <img  src="{{$challenge->user->imagenPerfil()}}">
@@ -34,13 +34,16 @@
             <a><i class="green user icon"></i> {{sizeof($participacions)}} Participantes </a>            
         </div>
         <div class="ui popup bottom inverted transition hidden">
-                @foreach ($participacions as $p)
                 <?php 
-                echo '<a style="color:white;" href="/'.$p->user->id.'">'.$p->user->full_name().'</a><br>';
-                $x++;
-                if($x == 2) break;
+                foreach ($participacions as $p){  
+                    if($x == 2) {
+                        echo '<a style="color:white;" href="/challenge/'.$challenge->id.'">...</a><br>';
+                        break;
+                    }              
+                    echo '<a style="color:white;" href="/'.$p->user->id.'">'.$p->user->full_name().'</a><br>';
+                    $x++;                    
+                }
                 ?>
-                @endforeach
             </div>
         </div>
     </div>

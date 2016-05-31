@@ -13,21 +13,32 @@ class PaginasController extends Controller
     public function index(){
     	// aca usaste para arreglar todo lo inarreglable-->  composer dump-autoload
         if (Session::has('user_id')) {
+
         	$items = Challenge::where('id_user', '!=', Session::get('user_id'))->get()->sortByDesc(function ($challenge, $key) {
                     return $challenge->participacions()->count();
-                })->take(3);
+                })->take(6);
+
+            $random = Challenge::where('id_user', '!=', Session::get('user_id'))->get()->random(6);
+
             $desafiosSeguidos = collect([]);
             $usersSiguiendo = Session::get('user')->siguiendo();
+
             foreach ($usersSiguiendo as $usuarioSeguido) {
                 $des = $usuarioSeguido->challenges()->get();
                 $desafiosSeguidos = $desafiosSeguidos->merge($des);
             }
-        	//$items = User::find(Session::get('user_id'))->challenges;
+            
             return view('principal')
                     ->with('items', $items)
+                    ->with('random', $random)
+                    ->with('usersSiguiendo', $usersSiguiendo)
                     ->with('dasafiosSeguidos', $desafiosSeguidos
-                                                ->sortBy('id')
-                                                ->sortBy('created_at')
+                                                ->sortByDesc('id')
+                                                ->sortByDesc('created_at')
+                                                ->sortByDesc(
+                                                    function ($challenge, $key) {
+                                                        return $challenge->participacions()->count();
+                                                    })
                     );
         }else{
             return view('login');
@@ -56,5 +67,5 @@ class PaginasController extends Controller
         var_dump(User::find(1)->imagenesPortada());
         var_dump(DB::getQueryLog());//Challenge::find(21)->imagen());
     }
-
+    
 }

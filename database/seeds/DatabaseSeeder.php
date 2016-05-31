@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Challenge;
+use App\Seguimiento;
 use App\Participacion;
 use Illuminate\Support\Facades\DB;
 
@@ -74,6 +75,8 @@ class DatabaseSeeder extends Seeder
                     'id_user' =>7
                 ));
         }
+        //participaciones
+        
 
         Participacion::create(array(
                 'title'=>'Primer titulo participacion',
@@ -82,6 +85,7 @@ class DatabaseSeeder extends Seeder
                 'id_user'=>2,
                 'id_challenge'=>21
             ));
+
         Participacion::create(array(
                 'title'=>'Segundo titulo participacion',
                 'video'=>'I4g1_fv0pSY',
@@ -89,7 +93,45 @@ class DatabaseSeeder extends Seeder
                 'id_user'=>1,
                 'id_challenge'=>21
             ));
+        for($i=3;$i<10;$i++)
+            Participacion::create(array(
+                'title'=>$faker->realText($maxNbChars = 10, $indexSize = 2),
+                'video'=>'I4g1_fv0pSY',
+                'description'=>$faker->realText($maxNbChars = 50, $indexSize = 2),
+                'id_user'=>$i,
+                'id_challenge'=>1
+            ));
+        for($i=4;$i<7;$i++)
+            Participacion::create(array(
+                'title'=>$faker->realText($maxNbChars = 10, $indexSize = 2),
+                'video'=>'I4g1_fv0pSY',
+                'description'=>$faker->realText($maxNbChars = 50, $indexSize = 2),
+                'id_user'=>$i,
+                'id_challenge'=>2
+            ));
+        for($i=4;$i<7;$i++)
+            Participacion::create(array(
+                'title'=>$faker->realText($maxNbChars = 10, $indexSize = 2),
+                'video'=>'I4g1_fv0pSY',
+                'description'=>$faker->realText($maxNbChars = 50, $indexSize = 2),
+                'id_user'=>$i,
+                'id_challenge'=>11
+            ));
+        for($i=11;$i<15;$i++)
+            Participacion::create(array(
+                'title'=>$faker->realText($maxNbChars = 10, $indexSize = 2),
+                'video'=>'I4g1_fv0pSY',
+                'description'=>$faker->realText($maxNbChars = 50, $indexSize = 2),
+                'id_user'=>1,
+                'id_challenge'=>$i
+            ));
 
+         for($i = 2 ; $i<5 ; $i++){
+            $seguimiento = new seguimiento();
+            $seguimiento->id_user_seguidor = 1;
+            $seguimiento->id_user_seguido = $i;
+            $seguimiento->save();
+         }
     }
 
 }
