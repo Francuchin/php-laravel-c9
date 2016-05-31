@@ -8,6 +8,7 @@
             bottom: 10px;
             right: 10px;
         }
+    
     </style>
 @stop
 @section('js')

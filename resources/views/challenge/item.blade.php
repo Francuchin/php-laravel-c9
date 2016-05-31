@@ -4,10 +4,10 @@
     $x = 0;
 ?>
 <div class="mdl-cell mdl-card mdl-shadow--4dp">
-<div class="mdl-card__title" style="height: 300px; background-image: url('http://lorempixel.com/600/300/city/{{$challenge->id % 10}}')">    
+<div class="mdl-card__title lazy" data-original="http://lorempixel.com/600/300/city/{{$challenge->id % 10}}" style="height: 300px; background: url('/images/loading.gif') no-repeat center rgb(68,138,255);">    
     @if($challenge->user->id != Session::get('user_id'))
     <div class="mdl-card__data-user">
-        <img  src="{{$challenge->user->imagenPerfil()}}">
+        <img class="lazy" src="/images/loading.gif" data-original="{{$challenge->user->imagenPerfil()}}">
         <div class="data_user_text">
             <a class="linkUser" href="/{{ $challenge->user->id}}">{{ $challenge->user->full_name() }}</a><br>
             <?php

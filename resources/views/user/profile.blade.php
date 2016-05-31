@@ -83,12 +83,13 @@
                 visibility: visible;
             }
         }
+        
     </style>
 @stop
 @section('js')
     @parent
-    <script src="/semantic/components/video.js"></script>
-    <script type="text/javascript">
+    <script src="/semantic/components/video.js" async="async"></script>
+    <script type="text/javascript" async="async">
     $(document).ready(function() {
         $('.ui.video').video();
     });

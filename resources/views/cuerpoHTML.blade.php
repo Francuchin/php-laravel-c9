@@ -4,9 +4,11 @@
 	<title>@yield('title', 'Challenge Accepted')</title>
 	<link rel="icon" href="/images/ico.png" type="image/png"> 
 	@section('css')
-	<link rel="stylesheet" type="text/css" href="/semantic/semantic.css">
+    <!--<link rel="stylesheet" href="/css/material.grey-blue.min.css" />-->
+    <link rel="stylesheet" href="/css/material.grey-blue.min.css" media="none" onload="if(media!='all')media='all'">
+    <noscript><link rel="stylesheet" href="/css/material.grey-blue.min.css"></noscript>
+    <link rel="stylesheet" type="text/css" href="/semantic/semantic.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-    <link rel="stylesheet" href="/css/material.grey-blue.min.css" />
     <link rel="stylesheet" href="/css/icon.css">
 	<style type="text/css" media="screen">
     .container{
@@ -14,7 +16,7 @@
                border-left:solid 1px rgba(0,0,0,0.2)!important;
                border-right:solid 1px rgba(0,0,0,0.2)!important;
                */
-        }
+    }
     .ui.fixed.menu{
         background-color: rgb(68,138,255);
         border: solid 1px rgba(0,0,0,.1);
@@ -111,20 +113,38 @@
 	</style>
 	@show
 	@section('js')
-	<script src="/js/jquery.min.js"></script>
-	<script src="/semantic/semantic.js"></script>    
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/semantic/semantic.js"></script> 
+    <script type="text/javascript" src="/js/jquery.lazyload.js"></script>   
+    <script type="text/javascript">
+       /* $(document).ready(function(e) {
+            document.getElementById("cargandoPagina").innerHTML = "<div class='ui active inverted dimmer'><div class='ui large text loader'>Cargando</div></div>";
+        });
+
+        $(window).load(function(e) {
+           document.getElementById("cargandoPagina").innerHTML="";
+        });*/
+
+    </script>
     <script src="/js/material.min.js"></script>
 	@show
 </head>
 <body>
 @yield('barraMenu')
 @yield('contenido')
+<div id="cargandoPagina"></div>
 @section('pie')
 	<div class="footer"></div>
-    <script type="text/javascript">
+    <script type="text/javascript" >    
         var anchors_tabs = document.getElementsByClassName('mdl-tabs__tab');
         Array.prototype.forEach.call(anchors_tabs, function(anchor, index) {
             anchors_tabs[index].href = anchors_tabs[index].dataset.link;
+        });
+        $("div.lazy").lazyload({
+              effect : "fadeIn"
+        });
+        $("img.lazy").lazyload({
+              effect : "fadeIn"
         });
     </script>
 @show

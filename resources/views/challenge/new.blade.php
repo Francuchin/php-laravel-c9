@@ -5,12 +5,36 @@
     .demo-card-square.mdl-card {
       margin: auto;
       top:45px;
-      width: 70%;
+      width: 60%;
       height: 500px;
     }
     .demo-card-square > .mdl-card__title {
       color: #fff;
-      background: url('../assets/demos/dog.png') bottom right 15% no-repeat rgb(68,138,255);
+      background: url('/images/media.jpg') rgb(68,138,255);
+      background-size: 100% 100%;
+    }
+    .mdl-textfield__label{
+      color: black;
+    }
+
+    .mdl-textfield--floating-label.is-focused > .mdl-textfield__label{
+      color: rgb(65, 65, 65);
+    }
+
+    #btn_subir{
+      position:absolute;
+      left: calc(50% - 100px);
+      top:0;
+      vertical-align: middle;
+    }
+    #description{
+      max-height: 120px;
+      min-height: 120px;
+      width: 100%;
+    }
+    .mdl-card__supporting-text,#areaTexto{
+      height: 150px;
+      width: 100%
     }
 </style>
 
@@ -42,8 +66,8 @@
 @section('contenido')
 <div class="demo-card-square mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title mdl-card--expand">
-  <button class="mdl-button mdl-js-button mdl-js-ripple-effect" style="position:absolute;">
-    Agregar Multimedia
+  <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="btn_subir">
+    <div class="icon material-icons">cloud_upload</div> Subir Multimedia
   </button>
    <div class="mdl-card__title-text mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
       <input class="mdl-textfield__input" type="text" name="title" id="title" >
@@ -51,9 +75,9 @@
     </div>
   </div>
   <div class="mdl-card__supporting-text">
-    <div class="mdl-card__title-text mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <textarea class="mdl-textfield__input" rows="3" name="description" id="description" ></textarea>
-        <label class="mdl-textfield__label" for="address">Descripcion del desafio</label>
+    <div id="areaTexto" class="mdl-card__title-text mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <textarea class="mdl-textfield__input" type="text" rows= "3" name="description" id="description" ></textarea>
+        <label class="mdl-textfield__label" for="description">Descripcion del desafio</label>
     </div>
   </div>
   <br>

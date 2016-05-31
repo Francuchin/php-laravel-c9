@@ -1,6 +1,6 @@
 <?php $timeAgo = new TimeAgo('Etc/GMT', 'es')?>
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-  <div class="mdl-tabs__tab-bar">
+  <div class="mdl-tabs__tab-bar" id="barra-tabs">
       <a data-link="#principal-panel" class="mdl-tabs__tab">Principal</a>
       <a data-link="#siguiendo-panel" class="mdl-tabs__tab is-active">Siguiendo</a>
       <a data-link="#random-panel" class="mdl-tabs__tab">Random</a>
