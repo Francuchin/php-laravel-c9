@@ -88,12 +88,6 @@
 @stop
 @section('js')
     @parent
-    <script src="/semantic/components/video.js" async="async"></script>
-    <script type="text/javascript" async="async">
-    $(document).ready(function() {
-        $('.ui.video').video();
-    });
-    </script>
 @stop
 @section('barraMenu')
     @include('menu')
@@ -117,3 +111,6 @@
     @include('user.listado')
 </div>
 @stop  
+@section('pie')
+    @parent
+@stop

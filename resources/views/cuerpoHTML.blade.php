@@ -113,9 +113,12 @@
 	</style>
 	@show
 	@section('js')
-	<script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/all.js" async></script>
     <script type="text/javascript" src="/semantic/semantic.js"></script> 
-    <script type="text/javascript" src="/js/jquery.lazyload.js"></script>   
+	<!--<script type="text/javascript" src="/js/jquery.min.js" async></script>
+    <script src="/js/material.min.js" async></script>
+    <script type="text/javascript" src="/semantic/semantic.js" async></script> 
+    <script type="text/javascript" src="/js/jquery.lazyload.js" async></script>   
     <script type="text/javascript">
        /* $(document).ready(function(e) {
             document.getElementById("cargandoPagina").innerHTML = "<div class='ui active inverted dimmer'><div class='ui large text loader'>Cargando</div></div>";
@@ -125,8 +128,7 @@
            document.getElementById("cargandoPagina").innerHTML="";
         });*/
 
-    </script>
-    <script src="/js/material.min.js"></script>
+    </script>-->
 	@show
 </head>
 <body>
@@ -136,7 +138,7 @@
 @section('pie')
 	<div class="footer"></div>
     <script type="text/javascript" >    
-        var anchors_tabs = document.getElementsByClassName('mdl-tabs__tab');
+       var anchors_tabs = document.getElementsByClassName('mdl-tabs__tab');
         Array.prototype.forEach.call(anchors_tabs, function(anchor, index) {
             anchors_tabs[index].href = anchors_tabs[index].dataset.link;
         });
