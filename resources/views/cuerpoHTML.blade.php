@@ -114,9 +114,9 @@
         height: 190px;
         background-color:transparent;
     }
-    .mdl-card__actions{
+    /*.mdl-card__actions{
         height: 35px;
-    }
+    }*/
 
     
 
@@ -208,6 +208,7 @@
             var media = video.getElementsByTagName('video')[0];             // video
             var rango = video.getElementsByClassName('video_rango')[0];     // input range
             var cargado = video.getElementsByClassName('video_cargado')[0]; // barra que muestra tiempo
+            var foto_btn = video.getElementsByClassName('foto_btn')[0];
             
             rango.setAttribute("value", media.currentTime); 
             rango.setAttribute("max", "0");
@@ -242,7 +243,24 @@
             rango.addEventListener("input", function(e) {               
                 media.currentTime = rango.value;
             });
-
+            if(foto_btn){
+                var input_captura = null;
+                foto_btn.addEventListener('click',function(){
+                    var canvas = document.createElement("canvas");
+                    canvas.setAttribute("width", media.videoWidth);
+                    canvas.setAttribute("height", media.videoHeight);
+                    canvas.getContext('2d').drawImage(media, 0, 0, media.videoWidth, media.videoHeight);
+                    if(!input_captura){
+                        input_captura = document.createElement("input");
+                        input_captura.classList.add("captura");
+                        input_captura.setAttribute("type","hidden");
+                        input_captura.setAttribute("value", canvas.toDataURL());
+                        video.appendChild(input_captura);
+                    }else{
+                        input_captura.setAttribute("value", canvas.toDataURL());
+                    }
+                });
+            }
         });
     </script>
 </body>

@@ -16,6 +16,8 @@ class CreateChallengesTable extends Migration
             $table->increments('id');
             $table->integer('id_user')->unsigned();
             $table->string('title'); 
+            $table->string('video');
+            $table->longText('poster'); 
             $table->string('description');        
             $table->foreign('id_user')
                 ->references('id')

@@ -7,7 +7,7 @@ use DB;
 class Challenge extends Model
 {
     protected $table = 'challenges';
-    protected $fillable = ['title','description', 'id_user'];
+    protected $fillable = ['title','video','poster','description', 'id_user'];
     protected $guarded = ['id'];
     
     public function user(){

@@ -4,7 +4,7 @@
   </div>
   <div class="mdl-card__media" >
   <div class="video">
-      <video class="video_contenido" src="{{$participacion->video}}" ></video>
+      <video class="video_contenido" src="{{$participacion->video}}" poster="{{$participacion->poster}}"></video>
       <input type="range" class="video_rango">
       <div class="video_cargado" ></div>
   </div>

@@ -17,7 +17,8 @@ class CreateParticipacionsTable extends Migration
             $table->integer('id_challenge')->unsigned();
             $table->integer('id_user')->unsigned();
             $table->string('title'); 
-            $table->string('video'); 
+            $table->string('video');
+            $table->longText('poster'); 
             $table->string('description');  
             $table->timestamps();            
             $table->foreign('id_challenge')
