@@ -16,11 +16,21 @@
     .mdl-textfield__label{
       color: black;
     }
-
+    .media{
+      position: absolute;
+      height: calc(100% - 200px);
+      margin: auto;
+      width: 100%;
+      left: 0px;
+      top: 0px;
+      z-index: 3;
+    }
     .mdl-textfield--floating-label.is-focused > .mdl-textfield__label{
       color: rgb(65, 65, 65);
     }
-
+    #btn_subir, .mdl-textfield{
+      z-index: 5;
+    }
     #btn_subir{
       position:absolute;
       left: calc(50% - 100px);
@@ -64,8 +74,11 @@
     @include('menu')
 @stop
 @section('contenido')
+
 <div class="demo-card-square mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title mdl-card--expand">
+  <div class="media">
+  </div>
   <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="btn_subir">
     <div class="icon material-icons">cloud_upload</div> Subir Multimedia
   </button>

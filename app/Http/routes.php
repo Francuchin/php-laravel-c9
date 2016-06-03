@@ -28,3 +28,4 @@ Route::post ('challenge','ChallengeController@store');
 Route::get('/{id}','PaginasController@visitarPerfil');
 Route::post('user/seguir/{seguido}/{seguidor}', 'UserController@seguir');
 Route::post('user/dejar_seguir/{seguido}/{seguidor}', 'UserController@dejar_seguir');
+

@@ -13,8 +13,13 @@ class User extends Model
     public function full_name(){
     	return $this->first_name.' '.$this->last_name;
     }
+    
     public function challenges($order="created_at", $orderTipe="desc"){
         return $this->hasMany('App\Challenge','id_user','id')->orderBy($order, $orderTipe);
+    }
+
+    public function participaciones(){
+        return $this->hasMany('App\Participacion', 'id_user', 'id');
     }
 
     public function imagenesPerfil(){

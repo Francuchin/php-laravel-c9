@@ -27,11 +27,13 @@ class PaginasController extends Controller
                 $des = $usuarioSeguido->challenges()->get();
                 $desafiosSeguidos = $desafiosSeguidos->merge($des);
             }
-            
+            $participando = Session::get('user')->participaciones()->get();
+
             return view('principal')
                     ->with('items', $items)
                     ->with('random', $random)
                     ->with('usersSiguiendo', $usersSiguiendo)
+                    ->with('participando', $participando)
                     ->with('dasafiosSeguidos', $desafiosSeguidos
                                                 ->sortByDesc('id')
                                                 ->sortByDesc('created_at')
@@ -64,8 +66,7 @@ class PaginasController extends Controller
     public function x(){
         DB::enableQueryLog();
         echo "<pre>";
-        var_dump(User::find(1)->imagenesPortada());
-        var_dump(DB::getQueryLog());//Challenge::find(21)->imagen());
+        var_dump(Participacion::find(2)->imagen());
     }
     
 }

@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
 
         Participacion::create(array(
                 'title'=>'Primer titulo participacion',
-                'video'=>'I4g1_fv0pSY',
+                'video'=>'/videos/video.mp4',
                 'description'=>$faker->realText($maxNbChars = 50, $indexSize = 2),
                 'id_user'=>2,
                 'id_challenge'=>21
@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
 
         Participacion::create(array(
                 'title'=>'Segundo titulo participacion',
-                'video'=>'I4g1_fv0pSY',
+                'video'=>'/videos/video.mp4',
                 'description'=>$faker->realText($maxNbChars = 50, $indexSize = 2),
                 'id_user'=>1,
                 'id_challenge'=>21
@@ -96,7 +96,7 @@ class DatabaseSeeder extends Seeder
         for($i=3;$i<10;$i++)
             Participacion::create(array(
                 'title'=>$faker->realText($maxNbChars = 10, $indexSize = 2),
-                'video'=>'I4g1_fv0pSY',
+                'video'=>'/videos/video.mp4',
                 'description'=>$faker->realText($maxNbChars = 50, $indexSize = 2),
                 'id_user'=>$i,
                 'id_challenge'=>1
@@ -104,7 +104,7 @@ class DatabaseSeeder extends Seeder
         for($i=4;$i<7;$i++)
             Participacion::create(array(
                 'title'=>$faker->realText($maxNbChars = 10, $indexSize = 2),
-                'video'=>'I4g1_fv0pSY',
+                'video'=>'/videos/video.mp4',
                 'description'=>$faker->realText($maxNbChars = 50, $indexSize = 2),
                 'id_user'=>$i,
                 'id_challenge'=>2
@@ -112,7 +112,7 @@ class DatabaseSeeder extends Seeder
         for($i=4;$i<7;$i++)
             Participacion::create(array(
                 'title'=>$faker->realText($maxNbChars = 10, $indexSize = 2),
-                'video'=>'I4g1_fv0pSY',
+                'video'=>'/videos/video.mp4',
                 'description'=>$faker->realText($maxNbChars = 50, $indexSize = 2),
                 'id_user'=>$i,
                 'id_challenge'=>11
@@ -120,7 +120,7 @@ class DatabaseSeeder extends Seeder
         for($i=11;$i<15;$i++)
             Participacion::create(array(
                 'title'=>$faker->realText($maxNbChars = 10, $indexSize = 2),
-                'video'=>'I4g1_fv0pSY',
+                'video'=>'/videos/video.mp4',
                 'description'=>$faker->realText($maxNbChars = 50, $indexSize = 2),
                 'id_user'=>1,
                 'id_challenge'=>$i

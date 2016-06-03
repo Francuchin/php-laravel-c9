@@ -110,12 +110,72 @@
         padding: 3px;
         text-align: center;
     }
+    .mdl-card__media{
+        height: 190px;
+        background-color:transparent;
+    }
+    .mdl-card__actions{
+        height: 35px;
+    }
+
+    
+
 	</style>
+        <style type="text/css">
+        .contenedor{
+            width: 600px;
+            height: 600px;
+            margin: auto;
+        }
+        .video{
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .video_contenido{
+            width: 100%;
+            height: 100%;
+        }
+
+        .video_rango {
+          z-index: 5;
+          opacity: 0;
+          -webkit-appearance: none; 
+          width: 100%;
+          margin: 0px;
+          box-sizing: border-box;
+          background: transparent; 
+          position: relative;
+          top: -14px;
+          cursor: pointer;
+
+        }
+
+        .video_rango:focus {
+          outline: none; 
+        }
+
+        .video:hover>.video_cargado{
+          opacity: 1;
+        }
+        .video_cargado{
+            transition: opacity .6s ease-in, width .2s linear;
+            opacity: 0;
+            height: 5px;
+            width: 0;
+            left: 0;
+            padding: 0;
+            margin: 0;
+            top: -30px;
+            box-sizing: border-box;
+            background-color: hsl(218, 100%, 0%); /*hsl(218, 100%, 63%);*/
+            position: relative;
+            z-index: 3;
+        }
+    </style>
 	@show
 	@section('js')
     <script type="text/javascript" src="/js/all.js" async></script>
-    <script type="text/javascript" src="/semantic/semantic.js"></script> 
-	<!--<script type="text/javascript" src="/js/jquery.min.js" async></script>
+   <!--<script type="text/javascript" src="/js/jquery.min.js" async></script>
     <script src="/js/material.min.js" async></script>
     <script type="text/javascript" src="/semantic/semantic.js" async></script> 
     <script type="text/javascript" src="/js/jquery.lazyload.js" async></script>   
@@ -129,6 +189,8 @@
         });*/
 
     </script>-->
+     <script type="text/javascript" src="/semantic/semantic.js"></script> 
+    
 	@show
 </head>
 <body>
@@ -137,18 +199,51 @@
 <div id="cargandoPagina"></div>
 @section('pie')
 	<div class="footer"></div>
-    <script type="text/javascript" >    
-       var anchors_tabs = document.getElementsByClassName('mdl-tabs__tab');
-        Array.prototype.forEach.call(anchors_tabs, function(anchor, index) {
-            anchors_tabs[index].href = anchors_tabs[index].dataset.link;
-        });
-        $("div.lazy").lazyload({
-              effect : "fadeIn"
-        });
-        $("img.lazy").lazyload({
-              effect : "fadeIn"
+@show
+<script type="text/javascript">
+        // javascript para videos
+        var videos = document.getElementsByClassName('video');
+        Array.prototype.forEach.call(videos , function(video, index) {
+
+            var media = video.getElementsByTagName('video')[0];             // video
+            var rango = video.getElementsByClassName('video_rango')[0];     // input range
+            var cargado = video.getElementsByClassName('video_cargado')[0]; // barra que muestra tiempo
+            
+            rango.setAttribute("value", media.currentTime); 
+            rango.setAttribute("max", "0");
+            rango.setAttribute("min", "0"); 
+            rango.setAttribute("step", ".1");
+
+            media.addEventListener('play',function(){
+                rango.max = media.duration;
+            });
+            media.addEventListener('timeupdate',function(){
+                rango.value = media.currentTime; 
+                var porcentajeCargado = (media.currentTime)*100/(media.duration);
+                cargado.style.width =porcentajeCargado +"%";
+                cargado.style.backgroundColor = "hsl(218, 100%, "+  (87 - ((porcentajeCargado)*50)/media.duration) +"%)";
+            });
+            media.addEventListener('durationchange',function(){
+                rango.max = media.duration;     
+            });
+            media.addEventListener('click', function(){
+                if(media.paused) {
+                    media.play();
+                    cargado.style.opacity = null;
+                }
+                else {
+                    media.pause();
+                    cargado.style.opacity = 1;
+                }
+            });
+            media.addEventListener('ended',function(){
+                rango.value = 0;
+            });
+            rango.addEventListener("input", function(e) {               
+                media.currentTime = rango.value;
+            });
+
         });
     </script>
-@show
 </body>
 </html>

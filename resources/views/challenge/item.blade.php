@@ -1,6 +1,5 @@
  <?php
     $participacions=$challenge->participacions;
-    $usuarios = array();
     $x = 0;
 ?>
 <div class="mdl-cell mdl-card mdl-shadow--4dp">
@@ -20,8 +19,7 @@
     @endif 
     <h2 class="mdl-card__title-text">{{$challenge->title}}</h2>
 </div>
-<div class="mdl-card__supporting-text">   
-    
+<div class="mdl-card__supporting-text">      
     {{$challenge->description}}
 </div>
 <div class="mdl-card__actions mdl-card--border">                    
