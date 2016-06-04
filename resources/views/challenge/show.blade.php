@@ -19,14 +19,10 @@
 @section('contenido')
 <div class="ui container">
     @include('challenge.portada')
-    <div class="ui equal width center aligned padded grid">
-      <div class="row">
-      @foreach($challenge->participacions as $p)
-        <div class=" four wide column">
+    <div class="mdl-grid">
+     @foreach($challenge->participacions as $p)
             @include('participacion.item',array('participacion'=>$p))
-        </div>
       @endforeach
-      </div>
     </div>
 </div> 
 @stop

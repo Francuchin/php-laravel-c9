@@ -41,7 +41,7 @@
             width: calc(50% - 16px);
         }
     }
-    .mdl-card__title>.mdl-card__data-user{
+    .video>.mdl-card__data-user{
         top: 0px;
         left: 0px;
         position: absolute;
@@ -51,7 +51,7 @@
         border: solid 1px rgba(0,0,0,.1);
         box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
     }
-    .mdl-card__title>.mdl-card__data-user>.data_user_text{
+    .video>.mdl-card__data-user>.data_user_text{
         display: inline-block;
     }
     .mdl-card__data-user>img{
@@ -61,7 +61,7 @@
         border: solid 1px rgba(0,0,0,.1);
         box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
     }
-    h2.mdl-card__title-text{
+    h2.mdl-card__media-text{
         text-align: center;
         font-size: 1.5rem;
         padding-left: 15px;
@@ -72,6 +72,8 @@
         color: white;
         border: solid 1px rgba(0,0,0,.1);
         box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+        position: absolute;
+        bottom: 50%;
     }
     .mdl-card__supporting-text{
         height: 100px;
@@ -111,7 +113,6 @@
         text-align: center;
     }
     .mdl-card__media{
-        height: 190px;
         background-color:transparent;
     }
     /*.mdl-card__actions{
@@ -122,6 +123,7 @@
 
 	</style>
         <style type="text/css">
+        /*  estilos para el reproductor */
         .contenedor{
             width: 600px;
             height: 600px;
@@ -171,6 +173,28 @@
             position: relative;
             z-index: 3;
         }
+        .img_play>img,
+        .img_replay>img{
+            width: 100%;
+            height: 100%;
+        }
+        .img_play, .img_replay{
+            position: absolute;
+            border-radius: 100%;
+            border: double 5px rgba(12, 100, 100, .9);
+            height: 100px;
+            width: 100px;
+            left: 50%;
+            top:calc(50% - 50px);
+            transform: translate(-50%, -50%);
+            transition: opacity .2s ease-in;
+            opacity: .6;
+            background-color: rgba(123, 123, 123, 0.2);
+            box-shadow: 0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12),0 5px 5px -3px rgba(0,0,0,.2);
+        }
+        .img_replay{
+            background-color: rgba(255, 255, 255, 0.6);
+        }
     </style>
 	@show
 	@section('js')
@@ -209,40 +233,90 @@
             var rango = video.getElementsByClassName('video_rango')[0];     // input range
             var cargado = video.getElementsByClassName('video_cargado')[0]; // barra que muestra tiempo
             var foto_btn = video.getElementsByClassName('foto_btn')[0];
-            
+            var etiquetas = video.getElementsByClassName('etiqueta');
+
+            var div_r = document.createElement('div');
+            var img_r = document.createElement('img');
+            img_r.setAttribute('src', '/images/replay.png');
+            div_r.classList.add('img_replay');
+            div_r.appendChild(img_r);
+
+            var div_p = document.createElement('div');
+            var img_p = document.createElement('img');
+            img_p.setAttribute('src', '/images/play.png');
+            div_p.classList.add('img_play');
+            div_p.appendChild(img_p);
+
+            //video.insertBefore(div_r, video.firstChild);
+            video.insertBefore(div_p, video.firstChild);
+
             rango.setAttribute("value", media.currentTime); 
             rango.setAttribute("max", "0");
-            rango.setAttribute("min", "0"); 
-            rango.setAttribute("step", ".1");
+            rango.setAttribute("min", "0");
+            rango.setAttribute("step", "0.1");
 
             media.addEventListener('play',function(){
                 rango.max = media.duration;
+                if(video.getElementsByClassName('img_replay')[0]){
+                    video.removeChild(div_r);
+                }
+                ocultar_etiquetas();
             });
             media.addEventListener('timeupdate',function(){
                 rango.value = media.currentTime; 
                 var porcentajeCargado = (media.currentTime)*100/(media.duration);
-                cargado.style.width =porcentajeCargado +"%";
+                cargado.style.width = porcentajeCargado +"%";
                 cargado.style.backgroundColor = "hsl(218, 100%, "+  (87 - ((porcentajeCargado)*50)/media.duration) +"%)";
+                if(video.getElementsByClassName('img_replay')[0]){
+                    video.removeChild(div_r);
+                }
             });
             media.addEventListener('durationchange',function(){
                 rango.max = media.duration;     
             });
-            media.addEventListener('click', function(){
+            media.addEventListener('ended',function(){
+                rango.value = 0;
+                video.insertBefore(div_r, video.firstChild);
+                mostrar_etiquetas();
+            });
+            function ocultar_etiquetas(){               
+                if(etiquetas[0]){
+                    Array.prototype.forEach.call(etiquetas , function(etiqueta, index) {
+                        etiqueta.style.visibility = 'hidden';
+                    });
+                }
+            }
+            function mostrar_etiquetas(){                
+                if(etiquetas[0]){
+                    Array.prototype.forEach.call(etiquetas , function(etiqueta, index) {
+                        etiqueta.style.visibility = 'visible';
+                    });
+                }
+            }
+            function play_pausa(){
                 if(media.paused) {
                     media.play();
                     cargado.style.opacity = null;
+                    div_p.style.opacity = 0;
+                    ocultar_etiquetas();
                 }
                 else {
                     media.pause();
                     cargado.style.opacity = 1;
+                    div_p.style.opacity = 1;
+                    mostrar_etiquetas();
                 }
-            });
-            media.addEventListener('ended',function(){
-                rango.value = 0;
-            });
-            rango.addEventListener("input", function(e) {               
+            }
+            div_p.addEventListener('click',play_pausa);
+            media.addEventListener('click',play_pausa);
+            div_r.addEventListener('click',function(){
+                play_pausa();
+            });            
+
+            rango.addEventListener('input', function(e) {               
                 media.currentTime = rango.value;
             });
+
             if(foto_btn){
                 var input_captura = null;
                 foto_btn.addEventListener('click',function(){
@@ -253,6 +327,7 @@
                     if(!input_captura){
                         input_captura = document.createElement("input");
                         input_captura.classList.add("captura");
+                        input_captura.setAttribute("name","captura");
                         input_captura.setAttribute("type","hidden");
                         input_captura.setAttribute("value", canvas.toDataURL());
                         video.appendChild(input_captura);

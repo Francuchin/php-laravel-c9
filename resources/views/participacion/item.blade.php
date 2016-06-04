@@ -1,4 +1,4 @@
- <div class="mdl-card mdl-shadow--4dp"  style="margin:3px;">
+ <div class="mdl-card mdl-shadow--4dp"  style="margin:10px;">
   <div class="mdl-card__title">
     <h5 class="mdl-card__title-text">{{$participacion->user->full_name()}}</h5>
   </div>
