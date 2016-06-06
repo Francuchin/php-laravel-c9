@@ -18,7 +18,7 @@
     @endif
     </div>
   </div>
-  <div class="mdl-tabs__panel is-active" id="participando-panel">
+  <div class="mdl-tabs__panel" id="participando-panel">
     <div class="mdl-grid">
     @if(isset($participando[0]))
       @foreach ($participando as $item)
