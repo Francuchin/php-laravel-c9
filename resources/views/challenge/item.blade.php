@@ -19,8 +19,8 @@
                 ?>
             </div>
         </div>
-        <h2 class="mdl-card__media-text etiqueta">{{$challenge->title}}</h2>
-        @endif 
+        @endif
+        <h2 class="mdl-card__media-text etiqueta">{{$challenge->title}}</h2>         
   </div>
 </div>
 <div class="mdl-card__supporting-text">      
