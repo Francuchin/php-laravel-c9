@@ -45,8 +45,9 @@
         top: 0px;
         left: 0px;
         position: absolute;
-        padding: 10px;
-        margin: 15px;
+        padding: 5px;
+        box-sizing: border-box;
+        margin: 5px;
         background-color: rgb(68,138,255);
         border: solid 1px rgba(0,0,0,.1);
         box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
@@ -62,32 +63,22 @@
         box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
     }
     h2.mdl-card__media-text{
-        text-align: center;
         font-size: 1.5rem;
         padding-left: 15px;
         padding-right: 15px;
         border-radius: 1px;
         background-color: rgb(68,138,255);
-        background-size: cover;
         color: white;
         border: solid 1px rgba(0,0,0,.1);
         box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
         position: absolute;
-        bottom: 50%;
+        bottom: 25%;
     }
     .mdl-card__supporting-text{
         height: 100px;
+        overflow-y: auto;
     }
-    .mdl-card--border>.menu{
-        min-height: 15px;
-    }
-    .mdl-card--border>.menu>.extra{
-        bottom: 5px;
-        position: absolute;
-    }
-    .mdl-card--border>.menu>.extra>a{
-        cursor: pointer;
-    }
+
     .linkUser{
     	font-size: 1em;
         cursor: pointer;
@@ -117,20 +108,15 @@
     }
     /*.mdl-card__actions{
         height: 35px;
-    }*/
-
-    
+    }*/   
 
 	</style>
         <style type="text/css">
         /*  estilos para el reproductor */
-        .contenedor{
-            width: 600px;
-            height: 600px;
-            margin: auto;
-        }
+
         .video{
             width: 100%;
+            position: relative;
             box-sizing: border-box;
         }
         .video_contenido{
@@ -185,7 +171,7 @@
             height: 100px;
             width: 100px;
             left: 50%;
-            top:calc(50% - 50px);
+            top: 44%;
             transform: translate(-50%, -50%);
             transition: opacity .2s ease-in;
             opacity: .6;
@@ -193,12 +179,12 @@
             box-shadow: 0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12),0 5px 5px -3px rgba(0,0,0,.2);
         }
         .img_replay{
-            background-color: rgba(255, 255, 255, 0.6);
+           /* background-color: rgba(255, 255, 255, 0.6);*/
         }
     </style>
 	@show
 	@section('js')
-    <script type="text/javascript" src="/js/all.js" async></script>
+    <script type="text/javascript" src="/js/all.js"></script>
    <!--<script type="text/javascript" src="/js/jquery.min.js" async></script>
     <script src="/js/material.min.js" async></script>
     <script type="text/javascript" src="/semantic/semantic.js" async></script> 
@@ -318,7 +304,7 @@
             });
 
             if(foto_btn){
-                var input_captura = null;
+                var input_captura = video.getElementsByClassName('captura')[0];
                 foto_btn.addEventListener('click',function(){
                     var canvas = document.createElement("canvas");
                     canvas.setAttribute("width", media.videoWidth);
@@ -334,6 +320,8 @@
                     }else{
                         input_captura.setAttribute("value", canvas.toDataURL());
                     }
+                    if(input_captura.hasAttribute('onchange'))
+                        input_captura.onchange();
                 });
             }
         });
