@@ -35,7 +35,15 @@ class ParticipacionController extends Controller
     	  $Participacion = new Participacion;
           $Participacion->title = Input::get('title'); 
           $Participacion->description = Input::get('description'); 
-          $Participacion->video = Input::get('video');
+          $video =  Input::file('video');
+          $ruta = "videos";
+          $extension = $video->getClientOriginalExtension();
+          $fileName = md5(rand ( 0 , 1000)).".".$extension;
+          $video->move($ruta, $fileName);
+          $Participacion->video = $ruta."/".$fileName;
+
+
+
           $Participacion->id_user =  Session::get('user_id'); 
           $Participacion->id_challenge =  Input::get('id_challenge');
           $Participacion->save();

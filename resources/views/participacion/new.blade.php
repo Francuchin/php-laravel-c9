@@ -18,7 +18,7 @@
 	      @endforeach
       	</div>
     @endif
-    <form class="ui large form" action="/accepting" method="post">
+    <form class="ui large form" action="/accepting" method="post" enctype="multipart/form-data" >
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="hidden" name="id_challenge" value="{{ $id_challenge }}">
       <div class="ui stacked segment">
@@ -31,7 +31,7 @@
         <div class="field">
           <div class="ui left icon input">
             <i class="photo icon"></i>
-            <input type="text" name="video" id="video" placeholder="Video"><br>
+            <input type="file" name="video" id="video" placeholder="Video"><br>
           </div>
         </div>
         <div class="field">
