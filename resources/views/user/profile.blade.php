@@ -36,15 +36,20 @@
        }
        .portada > .datos{
             position: relative;
-            top: 50%;
-            left: 35%;
+            top: 10%;
+            left: 43.5% !important;
             height: 150px;
+            width: 40%;
 
        }
-       .portada > .datos > .usuario{
-            margin-left: 1ex;
+       .portada > .usuario{
+            position: relative;
+            top: 16%;
             visibility: hidden;
-            display: inline-block;
+            /*
+ margin-left: 1ex;
+            display: inline-block;*/
+            text-align: center;
             color: white;
             font-size: 2em;
             font-weight: bold;
@@ -53,7 +58,7 @@
             text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
             vertical-align: 5ex;
        }
-       .portada > .datos > .usuario > spam{
+       .portada > .usuario > spam{
             font-size: 0.6em;
        }
         .portada > .datos > img{
@@ -63,7 +68,7 @@
             background-color: rgba(255,255,255,0);
             border:solid 5px rgba(255,255,255,0.4);
             box-shadow: 0px 0px 2px black;
-            display: inline-block; 
+            
         }
         .barraUser{
             margin-top: 0px!important;
@@ -79,7 +84,7 @@
             .portada > .datos{
                 left: 5%;
             }
-            .portada > .datos > .usuario{
+            .portada > .usuario{
                 visibility: visible;
             }
         }
@@ -97,12 +102,13 @@
     <div class="ui fluid portada">
         <div class="datos">
             <img  src="{{$profile->imagenPerfil()}}">  
-            <div class="usuario">
+            
+        </div>
+        <div class="usuario">
                 {{$profile->full_name()}} <br>
                 <spam>{{$profile->email}}</spam> <br>
                 <spam>Desafios creados: {{sizeOf($profile->challenges)}}</spam> <br>
             </div>
-        </div>
     </div>
     <?php 
         $items = $profile->challenges('id','desc')->get();

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link rel="stylesheet" href="/css/icon.css">
 	<style type="text/css" media="screen">
+    
     .container{
                /*
                border-left:solid 1px rgba(0,0,0,0.2)!important;

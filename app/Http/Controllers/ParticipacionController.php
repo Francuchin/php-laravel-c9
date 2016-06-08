@@ -40,7 +40,7 @@ class ParticipacionController extends Controller
           $extension = $video->getClientOriginalExtension();
           $fileName = md5(rand ( 0 , 1000)).".".$extension;
           $video->move($ruta, $fileName);
-          $Participacion->video = $ruta."/".$fileName;
+          $Participacion->video = "/".$ruta."/".$fileName;
 
 
 

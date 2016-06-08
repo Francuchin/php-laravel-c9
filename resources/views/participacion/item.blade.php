@@ -18,6 +18,6 @@
     {{$participacion->description}}
   </div>
   <div class="mdl-card__actions">
-    <a href="(URL or function)">nike</a>
+    <a href="(URL or function)">Votar</a>
   </div>
 </div>
