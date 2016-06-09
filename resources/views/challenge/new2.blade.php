@@ -54,8 +54,10 @@
 	 </div>
 	</div>
 	</form>
-	<form method="post" action="/challenge/" autocomplete="off">
+	<form id="formulario_crear_desafio" method="post" action="/challenge/" autocomplete="off">
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+	<input type="hidden" name="captura" id="form_input_captura" value="" >
+	<input type="hidden" name="video" id="form_input_video" value="" >	
 	<div class="mdl-card__supporting-text" style="
 											overflow:hidden;
 											height:auto;">    

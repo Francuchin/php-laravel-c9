@@ -319,7 +319,8 @@
 
     <script type="text/javascript" >
     /*----------------NUEVO DESAFIO-----------------*/
-  document.getElementById("subir_video").addEventListener("change", subir_video, false);
+  if(!! document.getElementById("subir_video"))  
+    document.getElementById("subir_video").addEventListener("change", subir_video, false);
 
   function subir_video() {
     document.getElementById("progreso").innerHTML = "<div class='ui active inverted dimmer'><div class='ui large text loader'>Subiendo Video</div></div>";
@@ -328,7 +329,8 @@
     var request = new XMLHttpRequest();
     
     request.onreadystatechange = function(e) {
-        console.log("onreadystatechange: ",request.readyState, request.status);
+        console.log("onreadystatechange: ",request.readyState ,request.response);
+
     };
     
     request.addEventListener('load', function() {
@@ -342,6 +344,7 @@
                     document.getElementById("progreso").innerHTML = "<div class='ui active dimmer'><div class='ui large text loader'>ERROR 3: no se pudo subir el video</div></div>";
                 }
             }else{
+                console.log(this);
                document.getElementById("progreso").innerHTML = "<div class='ui active dimmer'><div class='ui large text loader'>ERROR 2: no se pudo subir el video</div></div>"; 
             }
         }else{
@@ -356,13 +359,15 @@
 
     function actualizaimagen(){
       document.getElementById('img_previa').setAttribute('src', document.getElementById('captura').value);
+      document.getElementById('form_input_captura').setAttribute('value', document.getElementById('captura').value);
       document.getElementById('vista_previa').style.opacity = 0.9;
     }
 
     function add_video(ruta_video){
 
         var crear_challenge_video = document.getElementById('crear_challenge_video');
-
+        var formulario_crear_desafio = document.getElementById('formulario_crear_desafio');
+        document.getElementById('form_input_video').setAttribute('value', ruta_video);
         var vista_previa = document.createElement('div');
         var img_vista_previa = document.createElement('img');
 
