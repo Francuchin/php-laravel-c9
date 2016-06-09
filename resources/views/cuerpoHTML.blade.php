@@ -5,10 +5,8 @@
 	<link rel="icon" href="/images/ico.png" type="image/png"> 
 	@section('css')
     <!--<link rel="stylesheet" href="/css/material.grey-blue.min.css" />-->
-    <link rel="stylesheet" href="/css/material.grey-blue.min.css" media="none" onload="if(media!='all')media='all'">
-    <noscript><link rel="stylesheet" href="/css/material.grey-blue.min.css"></noscript>
+    <link rel="stylesheet" href="/css/material.grey-blue.min.css" >
     <link rel="stylesheet" type="text/css" href="/semantic/semantic.css">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <link rel="stylesheet" href="/css/icon.css">
 	<style type="text/css" media="screen">
     .container{
@@ -109,7 +107,9 @@
     /*.mdl-card__actions{
         height: 35px;
     }*/   
-
+    #nuevo>.mdl-card__supporting-text{
+        overflow:hidden;
+    }
 	</style>
         <style type="text/css">
         /*  estilos para el reproductor */
@@ -123,17 +123,17 @@
             width: 100%;
             height: 100%;
         }
-
         .video_rango {
-          z-index: 5;
+          position: absolute;
           opacity: 0;
-          -webkit-appearance: none; 
+          z-index: 5;
           width: 100%;
           margin: 0px;
+          padding: 0;
           box-sizing: border-box;
           background: transparent; 
-          position: relative;
-          top: -14px;
+          left: 0;
+          bottom:0;
           cursor: pointer;
 
         }
@@ -153,10 +153,10 @@
             left: 0;
             padding: 0;
             margin: 0;
-            top: -30px;
+            bottom: 0;
             box-sizing: border-box;
             background-color: hsl(218, 100%, 0%); /*hsl(218, 100%, 63%);*/
-            position: relative;
+            position: absolute;
             z-index: 3;
         }
         .img_play>img,
@@ -184,21 +184,9 @@
     </style>
 	@show
 	@section('js')
-    <script type="text/javascript" src="/js/all.js"></script>
-   <!--<script type="text/javascript" src="/js/jquery.min.js" async></script>
-    <script src="/js/material.min.js" async></script>
-    <script type="text/javascript" src="/semantic/semantic.js" async></script> 
-    <script type="text/javascript" src="/js/jquery.lazyload.js" async></script>   
-    <script type="text/javascript">
-       /* $(document).ready(function(e) {
-            document.getElementById("cargandoPagina").innerHTML = "<div class='ui active inverted dimmer'><div class='ui large text loader'>Cargando</div></div>";
-        });
-
-        $(window).load(function(e) {
-           document.getElementById("cargandoPagina").innerHTML="";
-        });*/
-
-    </script>-->
+    <!--<script type="text/javascript" src="/js/all.js" async></script>-->
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script src="/js/material.min.js"></script>
      <script type="text/javascript" src="/semantic/semantic.js"></script> 
     
 	@show
@@ -206,14 +194,15 @@
 <body>
 @yield('barraMenu')
 @yield('contenido')
-<div id="cargandoPagina"></div>
 @section('pie')
 	<div class="footer"></div>
 @show
 <script type="text/javascript">
         // javascript para videos
         var videos = document.getElementsByClassName('video');
-        Array.prototype.forEach.call(videos , function(video, index) {
+        Array.prototype.forEach.call(videos, crearVideo);
+
+        function crearVideo(video, index) {
 
             var media = video.getElementsByTagName('video')[0];             // video
             var rango = video.getElementsByClassName('video_rango')[0];     // input range
@@ -305,7 +294,7 @@
 
             if(foto_btn){
                 var input_captura = video.getElementsByClassName('captura')[0];
-                foto_btn.addEventListener('click',function(){
+                foto_btn.addEventListener('click',function(){                  
                     var canvas = document.createElement("canvas");
                     canvas.setAttribute("width", media.videoWidth);
                     canvas.setAttribute("height", media.videoHeight);
@@ -321,10 +310,107 @@
                         input_captura.setAttribute("value", canvas.toDataURL());
                     }
                     if(input_captura.hasAttribute('onchange'))
-                        input_captura.onchange();
+                        input_captura.onchange(); 
                 });
             }
-        });
+        }
     </script>
+
+
+    <script type="text/javascript" >
+    /*----------------NUEVO DESAFIO-----------------*/
+  document.getElementById("subir_video").addEventListener("change", subir_video, false);
+
+  function subir_video() {
+    document.getElementById("progreso").innerHTML = "<div class='ui active inverted dimmer'><div class='ui large text loader'>Subiendo Video</div></div>";
+
+    var formData = new FormData(document.querySelector('#formulario_subir_video'));
+    var request = new XMLHttpRequest();
+    
+    request.onreadystatechange = function(e) {
+        console.log("onreadystatechange: ",request.readyState, request.status);
+    };
+    
+    request.addEventListener('load', function() {
+        if(this.status == 200){
+            var json = JSON.parse(this.response);
+            if(!!json.resultado){
+                if(json.resultado == 'ok'){
+                    document.getElementById("progreso").innerHTML = "";
+                    add_video(json.ruta);
+                }else{
+                    document.getElementById("progreso").innerHTML = "<div class='ui active dimmer'><div class='ui large text loader'>ERROR 3: no se pudo subir el video</div></div>";
+                }
+            }else{
+               document.getElementById("progreso").innerHTML = "<div class='ui active dimmer'><div class='ui large text loader'>ERROR 2: no se pudo subir el video</div></div>"; 
+            }
+        }else{
+            document.getElementById("progreso").innerHTML = "<div class='ui active dimmer'><div class='ui large text loader'>ERROR 1: no se pudo subir el video</div></div>";
+        }
+    });
+    request.open("POST", "/subir_video", true);
+    request.setRequestHeader("X-CSRF-Token", "{{ csrf_token() }}");
+    request.send(formData);
+
+  }
+
+    function actualizaimagen(){
+      document.getElementById('img_previa').setAttribute('src', document.getElementById('captura').value);
+      document.getElementById('vista_previa').style.opacity = 0.9;
+    }
+
+    function add_video(ruta_video){
+
+        var crear_challenge_video = document.getElementById('crear_challenge_video');
+
+        var vista_previa = document.createElement('div');
+        var img_vista_previa = document.createElement('img');
+
+        var video = document.createElement('div');
+        var foto_btn = document.createElement('div');
+        var video_media = document.createElement('video');
+        var video_rango = document.createElement('input');
+        var video_cargado = document.createElement('div');
+        var captura = document.createElement('input');
+        var ruta = document.createElement('input');
+
+        vista_previa.classList.add('vista_previa');
+        //img_vista_previa.classList.add('img_previa');
+        video.classList.add('video');
+        foto_btn.classList.add('foto_btn');
+        video_media.classList.add('video_contenido');
+        video_rango.classList.add('video_rango');
+        video_cargado.classList.add('video_cargado');
+        captura.classList.add('captura');
+
+        foto_btn.innerHTML="captura";
+
+        vista_previa.setAttribute('id','vista_previa');
+        img_vista_previa.setAttribute('id','img_previa');
+        captura.setAttribute('id','captura');
+        captura.setAttribute('name','captura');
+        ruta.setAttribute('name', 'video');
+        video_media.setAttribute('id', 'nuevo_desafio_video');
+        video_rango.setAttribute('type','range');
+        captura.setAttribute('type', 'hidden');
+        ruta.setAttribute('type', 'hidden');
+        ruta.setAttribute('value', ruta_video);
+        video_media.setAttribute('src', ruta_video);
+        captura.setAttribute('onchange', 'javascript:actualizaimagen()');
+
+        vista_previa.appendChild(img_vista_previa);
+        video.appendChild(foto_btn);
+        video.appendChild(video_media);
+        video.appendChild(video_rango);
+        video.appendChild(video_cargado);
+        video.appendChild(ruta);
+        video.appendChild(captura);
+        
+        crear_challenge_video.innerHTML = "";
+        crear_challenge_video.appendChild(vista_previa);
+        crear_challenge_video.appendChild(video);
+        crearVideo(video);
+    }
+</script>
 </body>
 </html>

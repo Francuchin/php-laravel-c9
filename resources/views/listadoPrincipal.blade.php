@@ -9,6 +9,7 @@
   </div>
   <div class="mdl-tabs__panel is-active" id="siguiendo-panel">
     <div class="mdl-grid">
+    @include('challenge.new2')
     @if(isset($dasafiosSeguidos[0]))
       @foreach ($dasafiosSeguidos as $item)
          @include('challenge.item', array('challenge'=>$item))

@@ -14,12 +14,22 @@ Route::get('/', 'PaginasController@index');
 Route::get('/I', 'PaginasController@misDesafios');
 //prueba
 Route::get('x','PaginasController@x');
-Route::get ('challenge/create','ChallengeController@create');
-Route::get ('challenge/{id}/accepting','ParticipacionController@create');
-Route::get ('challenge/{id}','ChallengeController@ver');
-Route::get ('user/logout','UserController@logout');
-Route::get ('user/signin',function(){return view('signin');});
-Route::post ('accepting','ParticipacionController@store');
+Route::post('subir_video',function(){		  
+		  $video =  Input::file('subir_video');
+          $ruta = "videos";
+          $extension = $video->getClientOriginalExtension();
+          $fileName = md5(rand ( 0 , 1000)).".".$extension;
+          $video->move($ruta, $fileName);
+          $ruta = "/".$ruta."/".$fileName;
+          $arr = array('resultado' => 'ok', 'ruta' => $ruta);
+          echo json_encode($arr);
+});
+//Route::get ('challenge/create','ChallengeController@create');
+Route::get('challenge/{id}/accepting','ParticipacionController@create');
+Route::get('challenge/{id}','ChallengeController@ver');
+Route::get('user/logout','UserController@logout');
+Route::get('user/signin',function(){return view('signin');});
+Route::post('accepting','ParticipacionController@store');
 Route::post('user/login','UserController@login');
 Route::post('user/showByEmail/{email}','UserController@showByEmail');
 Route::resource('user', 'UserController', ['except' => ['create','show','edit','index','update', 'destroy']]);

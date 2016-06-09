@@ -6,12 +6,12 @@
 
 <div class="mdl-card__media">
  <div class="video">
-      <video class="video_contenido" src="{{$challenge->video}}" poster="{{$challenge->poster}}"></video>
+      <video class="video_contenido" src="{{$challenge->video}}" poster="{{$challenge->poster}}" preload="none"></video>
       <input type="range" class="video_rango">
       <div class="video_cargado" ></div>
        @if($challenge->user->id != Session::get('user_id'))
         <div class="mdl-card__data-user etiqueta">
-            <img class="lazyload" src="/images/loading.gif" data-srcset="{{$challenge->user->imagenPerfil()}}">
+            <img src="{{$challenge->user->imagenPerfil()}}">
             <div class="data_user_text">
                 <a class="linkUser" href="/{{ $challenge->user->id}}">{{ $challenge->user->full_name() }}</a><br>
                 <?php
