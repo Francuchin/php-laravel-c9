@@ -14,15 +14,21 @@ Route::get('/', 'PaginasController@index');
 Route::get('/I', 'PaginasController@misDesafios');
 //prueba
 Route::get('x','PaginasController@x');
-Route::post('subir_video',function(){		  
-		  $video =  Input::file('subir_video');
+Route::post('subir_video',function(){	
+
+		$validator = Validator::make(Input::all(), array( 'subir_video' =>  'required|mimes:mp4' ) ); 
+		if ($validator->fails()){
+			return $validator->messages()->toJson();
+		}
+
+ 		  $video =  Input::file('subir_video');
           $ruta = "videos";
           $extension = $video->getClientOriginalExtension();
           $fileName = md5(rand ( 0 , 1000)).".".$extension;
           $video->move($ruta, $fileName);
           $ruta = "/".$ruta."/".$fileName;
           $arr = array('resultado' => 'ok', 'ruta' => $ruta);
-          echo json_encode($arr);
+          return response()->json($arr);
 });
 //Route::get ('challenge/create','ChallengeController@create');
 Route::get('challenge/{id}/accepting','ParticipacionController@create');

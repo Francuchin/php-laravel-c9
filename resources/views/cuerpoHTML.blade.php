@@ -332,7 +332,11 @@
         console.log("onreadystatechange: ",request.readyState ,request.response);
 
     };
-    
+    request.addEventListener("progress", function(e){
+        console.log(e);
+    });
+
+
     request.addEventListener('load', function() {
         if(this.status == 200){
             var json = JSON.parse(this.response);
@@ -341,14 +345,30 @@
                     document.getElementById("progreso").innerHTML = "";
                     add_video(json.ruta);
                 }else{
-                    document.getElementById("progreso").innerHTML = "<div class='ui active dimmer'><div class='ui large text loader'>ERROR 3: no se pudo subir el video</div></div>";
+                    var mensaje ="<div class='ui active dimmer'>";
+                        mensaje+="<div class='content'>";
+                        mensaje+="<div class='center'>";
+                        mensaje+="<h2 class='ui inverted header'>ERROR 3: no se pudo subir el video</h2>";
+                        mensaje+="</div></div></div>";
+                    document.getElementById("progreso").innerHTML = mensaje;
                 }
             }else{
-                console.log(this);
-               document.getElementById("progreso").innerHTML = "<div class='ui active dimmer'><div class='ui large text loader'>ERROR 2: no se pudo subir el video</div></div>"; 
+               var mensaje ="<div class='ui active dimmer'>";
+                        mensaje+="<div class='content'>";
+                        mensaje+="<div class='center'>";
+                        mensaje+="<h2 class='ui inverted header'>ERROR 2: no se pudo subir el video</h2>";
+                        if(!!json.subir_video){
+                            mensaje+="<ul>";
+                            for(var error in json.subir_video){
+                               mensaje+="<li class='ui inverted' >"+ json.subir_video[error]+"</li>";
+                            }
+                            mensaje+="</ul>";
+                        }
+                        mensaje+="</div></div></div>";
+                    document.getElementById("progreso").innerHTML = mensaje;
             }
         }else{
-            document.getElementById("progreso").innerHTML = "<div class='ui active dimmer'><div class='ui large text loader'>ERROR 1: no se pudo subir el video</div></div>";
+            document.getElementById("progreso").innerHTML = "<div class='ui active dimmer'><div class='content'>ERROR 1: no se pudo subir el video</div></div>";
         }
     });
     request.open("POST", "/subir_video", true);
