@@ -34,7 +34,7 @@
         </div>
       <h3 class="mdl-card__media-text titulo_participacion etiqueta"><a onclick="javascript:$(this).parent().parent().parent().dimmer('show');">{{$participacion->title}}</a></h3>  
 </div>
-<div class="ui dimmer participacion">
+<div class="ui dimmer participacion " style="background-color: rgba(0, 0, 0, .9);">
   <div class="cerrar" onclick="javascript:$(this).parent().parent().dimmer('hide');">
          <i class="material-icons">close</i>
   </div>

@@ -119,7 +119,8 @@
         transform: translate(-50%,0);
     }
     .dimmer.participacion{
-        color: white;
+        color: rgba(255,255,255,.7);
+        text-shadow: 0 0 1em rgb(0, 56, 153), 0 0 0.2em rgb(68,138,255);
     }
     .dimmer.participacion>.titulo{
         position: absolute;
@@ -157,6 +158,13 @@
         top: 3px;
         right: 3px;
         cursor: pointer;
+        transition: all .7s;
+        z-index: 3;
+    }
+    .dimmer.participacion>.cerrar:hover{
+        text-shadow: 0 0 0.2em red;
+        color: red;
+        transform: rotate(90deg) scale(.7,.7);
     }
 	</style>
         <style type="text/css">
@@ -228,6 +236,38 @@
         }
         .img_replay{
            /* background-color: rgba(255, 255, 255, 0.6);*/
+        }
+    </style>
+    <style type="text/css">
+        /*------nueva_participacion---------*/
+      
+        .formulario_nueva_participacion{
+            position: absolute;
+            width: 100%;
+            height: 90%;
+            top: 0;
+            left: 0;
+        }
+        .nueva_participacion_video{
+            top:0;
+            left: 0;
+            height: 61%;
+            width: 100%;
+        }
+        .nueva_participacion_video>.upload{
+            top:50%;
+            transform: translateY(-50%);
+
+        }
+        .nueva_participacion>.actions{
+            transform: translate(0,0)!important;
+            width: 100%;
+            height: 9%;
+            left: 0!important;
+        }
+        .nueva_participacion>.actions>i{
+            height: 100%;
+            cursor: pointer;
         }
     </style>
 	@show
@@ -364,11 +404,105 @@
             }
         }
     </script>
+    <script type="text/javascript">
+    /*----------NUEVA PARTICIPACION----------*/
+    var input_subir_video_participacion = document.getElementsByClassName('input_subir_video_participacion');
+    Array.prototype.forEach.call(input_subir_video_participacion, nueva_participacion_subir_video);
+    function nueva_participacion_subir_video(input, index){
+        input.addEventListener("change", subir_video_participacion, false);
+    };
+    function subir_video_participacion(e){
+        $(e.target).parent().parent().parent().dimmer('show');
+        var formData = new FormData();
+        formData.append("subir_video", e.target.files[0]);
+        var request = new XMLHttpRequest();
+        request.addEventListener('load', function() {
+            if(this.status == 200){
+                var json = JSON.parse(this.response);
+                if(!!json.resultado){
+                    if(json.resultado == 'ok'){
+                        $(e.target).parent().parent().parent().dimmer('hide');
+                        crear_video_participacion(e.target.parentElement.parentElement.parentElement, json.ruta);
+                    }else{
+                       console.log("Error 1");
+                    }
+                }else{
+                    console.log("Error 2");
+                    if(!!json.subir_video){
+                        for(var error in json.subir_video){
+                            console.log("causa:", json.subir_video[error]);
+                        }
+                    }
+                }
+            }else{
+               console.log("Error 3");
+            }
+        });
+        request.open("POST", "/subir_video", true);
+        request.setRequestHeader("X-CSRF-Token", "{{ csrf_token() }}");
+        request.send(formData);
+    };
+    function crear_video_participacion(nodo, link_video){
+
+        var video_ruta = nodo.getElementsByClassName('nueva_participacion_video_txt')[0];
+        video_ruta.setAttribute('value',link_video);
+        var seccion_video = nodo.getElementsByClassName('nueva_participacion_video')[0];
+
+        var vista_previa = document.createElement('div');
+        var img_vista_previa = document.createElement('img');
+
+        var video = document.createElement('div');
+        var foto_btn = document.createElement('div');
+        var video_media = document.createElement('video');
+        var video_rango = document.createElement('input');
+        var video_cargado = document.createElement('div');
+        var captura = document.createElement('input');
+        
+        vista_previa.classList.add('vista_previa');
+        //img_vista_previa.classList.add('img_previa');
+        video.classList.add('video');
+        foto_btn.classList.add('foto_btn');
+        video_media.classList.add('video_contenido');
+        video_rango.classList.add('video_rango');
+        video_cargado.classList.add('video_cargado');
+        captura.classList.add('captura');
 
 
+        //vista_previa.setAttribute('id','vista_previa');
+        //img_vista_previa.setAttribute('id','img_previa');
+        //captura.setAttribute('id','captura');
+        captura.setAttribute('name','captura');
+        //video_media.setAttribute('id', 'nuevo_desafio_video');
+        video_rango.setAttribute('type','range');
+        captura.setAttribute('type', 'hidden');
+        video_media.setAttribute('src', link_video);
+
+        foto_btn.innerHTML="captura";
+        captura.setAttribute('onchange', 'javascript:actualizaimagenParticipacion(this)');
+
+        vista_previa.appendChild(img_vista_previa);
+        video.appendChild(foto_btn);
+        video.appendChild(video_media);
+        video.appendChild(video_rango);
+        video.appendChild(video_cargado);
+        video.appendChild(captura);
+        
+        seccion_video.innerHTML = "";
+        seccion_video.appendChild(vista_previa);
+        seccion_video.appendChild(video);
+        crearVideo(video);
+
+    }
+    function actualizaimagenParticipacion(elemento){
+        elemento.parentElement.parentElement.parentElement.getElementsByClassName('nueva_participacion_captura_txt')[0].setAttribute('value', elemento.value);
+        var vp = elemento.parentElement.parentElement.getElementsByClassName('vista_previa')[0];
+        vp.getElementsByTagName('img')[0].setAttribute('src',elemento.value);
+        vp.style.opacity = 0.9;
+    }
+    </script>
     <script type="text/javascript" >
     /*----------------NUEVO DESAFIO-----------------*/
-  if(!! document.getElementById("subir_video"))  
+  if(!!document.getElementById("subir_video"))  
     document.getElementById("subir_video").addEventListener("change", subir_video, false);
 
   function subir_video() {

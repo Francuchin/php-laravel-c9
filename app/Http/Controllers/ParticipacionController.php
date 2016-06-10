@@ -23,7 +23,7 @@ class ParticipacionController extends Controller
     	 	return Redirect::to('/');
     	$rules = array(
             'title'    		  => 'required',
-            'description'     => 'required',
+            'comentario'     => 'required',
             'id_challenge'    => 'required|exists:challenges,id'
         );
         $validator = Validator::make(Input::all(), $rules);
@@ -32,21 +32,15 @@ class ParticipacionController extends Controller
                 ->withErrors($validator)
                 ->with('id_challenge', Input::get('id_challenge'));
         } else {
-    	  $Participacion = new Participacion;
+    	    $Participacion = new Participacion;
           $Participacion->title = Input::get('title'); 
-          $Participacion->description = Input::get('description'); 
+          $Participacion->description = Input::get('comentario'); 
           $Participacion->video = Input::get('video');
+          $Participacion->poster = Input::get('captura');
           $Participacion->id_user =  Session::get('user_id'); 
           $Participacion->id_challenge =  Input::get('id_challenge');
           $Participacion->save();
           $id = $Participacion->id;
-         /* if(Input::has('video')){
-            DB::table('img_participations')->insert([
-              'id_participacion' => $id,
-              'img' => Input::get('video')
-              ]);
-        }*/
-          echo $id;
           return Redirect::to('/challenge/'.Input::get('id_challenge'));
         }
 

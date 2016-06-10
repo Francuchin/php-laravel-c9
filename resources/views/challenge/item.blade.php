@@ -1,13 +1,48 @@
  <?php
     $participacions=$challenge->participacions;
     $x = 0;
+    ($challenge->poster != "null")? $poster =$challenge->poster : $poster="/images/media.jpg";
 ?>
 <div class="mdl-cell mdl-card mdl-shadow--4dp">
-
+<div class="ui dimmer nueva_participacion participacion " style="background-color: black;"><!-- Nueva Participacion -->
+  <div class="cerrar" onclick="javascript:$(this).parent().parent().dimmer('hide');">
+         <i class="material-icons">close</i>
+  </div>
+  <div class="formulario_nueva_participacion">
+      <div class="ui inverted dimmer">
+        <div class="ui text loader">Subiendo Video</div>
+      </div>
+      <div class="nueva_participacion_video">
+        <label>
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--primary upload" >
+               <i class="material-icons">file_upload</i>
+            </a>
+            <input type="file" class="input_subir_video_participacion" hidden>
+        </label>
+      </div>
+    <form method="post" action="accepting" style="padding:5px;"  autocomplete="off">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" name="title"required>
+        <label class="mdl-textfield__label">Titulo</label>
+       </div>  
+       <div class="mdl-card__title-text mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style=" width: 100%;">
+        <textarea class="mdl-textfield__input" type="text" name="comentario" required></textarea>
+        <label class="mdl-textfield__label">Comentario</label>
+      </div>
+      <input type="hidden" name="video" class="nueva_participacion_video_txt">
+      <input type="hidden" name="captura" class="nueva_participacion_captura_txt">
+      <input type="hidden" name="id_challenge" value="{{$challenge->id}}">  
+    </form>
+  </div>  
+  <div class="actions">
+    <i class="material-icons" onclick="javascript:this.parentElement.parentElement.getElementsByTagName('form')[0].submit();">file_upload</i>
+  </div>
+</div><!-- FIN Nueva Participacion -->
 <div class="mdl-card__media">
 @if($challenge->video != "null")
  <div class="video">
-      <video class="video_contenido" src="{{$challenge->video}}" poster="{{$challenge->poster}}" preload="none"></video>
+      <video class="video_contenido" src="{{$challenge->video}}" poster="{{$poster}}" preload="none"></video>
       <input type="range" class="video_rango">
       <div class="video_cargado" ></div>
        @if($challenge->user->id != Session::get('user_id'))
@@ -45,7 +80,7 @@
 <div class="mdl-card__actions mdl-card--border">                    
     <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--primary"  href="/challenge/{{$challenge->id}}">Ver</a>
 <?php if(!$challenge->userParticipa(Session::get('user_id')) && $challenge->user->id != Session::get('user_id')){ ?>
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"  href="/challenge/{{$challenge->id}}/accepting">¿Aceptas el desafio?</a>
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" onclick="javascript:$(this).parent().parent().dimmer('show')">¿Aceptas el desafio?</a>
 <?php } ?>
 </div>
 <div class="mdl-card__actions mdl-card--border">
