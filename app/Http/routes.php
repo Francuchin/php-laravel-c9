@@ -24,7 +24,7 @@ Route::post('subir_video',function(){
  		  $video =  Input::file('subir_video');
           $ruta = "videos";
           $extension = $video->getClientOriginalExtension();
-          $fileName = md5(rand ( 0 , 1000)).".".$extension;
+          $fileName = md5(rand ( 0 , 1000)).md5(rand ( 0 , 1000)).".".$extension;
           $video->move($ruta, $fileName);
           $ruta = "/".$ruta."/".$fileName;
           $arr = array('resultado' => 'ok', 'ruta' => $ruta);

@@ -5,6 +5,7 @@
 <div class="mdl-cell mdl-card mdl-shadow--4dp">
 
 <div class="mdl-card__media">
+@if($challenge->video != "null")
  <div class="video">
       <video class="video_contenido" src="{{$challenge->video}}" poster="{{$challenge->poster}}" preload="none"></video>
       <input type="range" class="video_rango">
@@ -15,13 +16,28 @@
             <div class="data_user_text">
                 <a class="linkUser" href="/{{ $challenge->user->id}}">{{ $challenge->user->full_name() }}</a><br>
                 <?php
-                echo '<a class="timeAgo">'.$timeAgo->inWords($challenge->created_at).'</a>';
+                echo '<a class="timeAgo">'.(new TimeAgo('Etc/GMT', 'es'))->inWords($challenge->created_at).'</a>';
                 ?>
             </div>
         </div>
         @endif
         <h2 class="mdl-card__media-text etiqueta">{{$challenge->title}}</h2>         
   </div>
+@else
+ @if($challenge->user->id != Session::get('user_id'))
+        <div class="mdl-card__data-user etiqueta">
+            <img src="{{$challenge->user->imagenPerfil()}}">
+            <div class="data_user_text">
+                <a class="linkUser" href="/{{ $challenge->user->id}}">{{ $challenge->user->full_name() }}</a><br>
+                <?php
+                echo '<a class="timeAgo">'.$timeAgo->inWords($challenge->created_at).'</a>';
+                ?>
+            </div>
+        </div>
+        @endif
+        <h2 class="mdl-card__media-text etiqueta">{{$challenge->title}}</h2> 
+<img src="images/media.jpg" width="100%" height="auto">
+@endif
 </div>
 <div class="mdl-card__supporting-text">      
     {{$challenge->description}}

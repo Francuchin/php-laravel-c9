@@ -39,7 +39,7 @@
             width: calc(50% - 16px);
         }
     }
-    .video>.mdl-card__data-user{
+    .mdl-card__data-user.etiqueta{
         top: 0px;
         left: 0px;
         position: absolute;
@@ -50,7 +50,7 @@
         border: solid 1px rgba(0,0,0,.1);
         box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
     }
-    .video>.mdl-card__data-user>.data_user_text{
+    .mdl-card__data-user.etiqueta>.data_user_text{
         display: inline-block;
     }
     .mdl-card__data-user>img{
@@ -60,8 +60,8 @@
         border: solid 1px rgba(0,0,0,.1);
         box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
     }
+    h3.mdl-card__media-text,
     h2.mdl-card__media-text{
-        font-size: 1.5rem;
         padding-left: 15px;
         padding-right: 15px;
         border-radius: 1px;
@@ -71,6 +71,10 @@
         box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
         position: absolute;
         bottom: 25%;
+    }
+    h3.mdl-card__media-text>a{
+        cursor: pointer;
+        color: rgba(0,0,0,.6);
     }
     .mdl-card__supporting-text{
         height: 100px;
@@ -109,6 +113,50 @@
     }*/   
     #nuevo>.mdl-card__supporting-text{
         overflow:hidden;
+    }
+    .titulo_participacion{
+        left: 50%;
+        transform: translate(-50%,0);
+    }
+    .dimmer.participacion{
+        color: white;
+    }
+    .dimmer.participacion>.titulo{
+        position: absolute;
+        left: 50%;
+        top:0;
+        transform: translate(-50%,10%);
+        display: inline-block;
+    }
+    .dimmer.participacion>.comentario>span{
+        position: absolute;
+        bottom: 2px;
+        right: 2px;
+        font-size: .7rem;
+        color: rgba(255,255,255,.6);
+    }
+    .dimmer.participacion>.comentario{
+        position: absolute;
+        left: 50%;
+        top:50%;
+        transform: translate(-50%,-50%);
+        border: solid 1px rgba(255,255,255,.2);
+        background-color: rgba(0,0,0,.3);
+        padding: 10px;
+        border-radius: 2px;
+        box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+    }
+    .dimmer.participacion>.actions{
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%,-50%);
+    }
+    .dimmer.participacion>.cerrar{
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        cursor: pointer;
     }
 	</style>
         <style type="text/css">
@@ -194,6 +242,7 @@
 <body>
 @yield('barraMenu')
 @yield('contenido')
+
 @section('pie')
 	<div class="footer"></div>
 @show
@@ -241,7 +290,7 @@
                 rango.value = media.currentTime; 
                 var porcentajeCargado = (media.currentTime)*100/(media.duration);
                 cargado.style.width = porcentajeCargado +"%";
-                cargado.style.backgroundColor = "hsl(218, 100%, "+  (87 - ((porcentajeCargado)*50)/media.duration) +"%)";
+                cargado.style.backgroundColor = "hsl(208, 63%, "+  (100-porcentajeCargado/2) +"%)";
                 if(video.getElementsByClassName('img_replay')[0]){
                     video.removeChild(div_r);
                 }
@@ -436,6 +485,15 @@
         crear_challenge_video.appendChild(video);
         crearVideo(video);
     }
+    $('.menu .browse').popup({
+        inline   : true,
+        hoverable: true,
+        position : 'top left',
+        delay: {
+          show: 300,
+          hide: 800
+        }
+    });
 </script>
 </body>
 </html>

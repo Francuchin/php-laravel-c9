@@ -62,11 +62,11 @@
 											overflow:hidden;
 											height:auto;">    
 	   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-	    <input class="mdl-textfield__input" type="text" name="title" id="nuevo_desafio_title">
+	    <input class="mdl-textfield__input" type="text" name="title" id="nuevo_desafio_title" required>
 	    <label class="mdl-textfield__label" for="nuevo_desafio_title">Titulo</label>
 	   </div>  
 	   <div class="mdl-card__title-text mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style=" width: 100%;">
-	    <textarea class="mdl-textfield__input" type="text" name="comentario" id="nuevo_desafio_description"></textarea>
+	    <textarea class="mdl-textfield__input" type="text" name="comentario" id="nuevo_desafio_description" required></textarea>
 	    <label class="mdl-textfield__label">Comentario</label>
 	  </div>
 	</div>
