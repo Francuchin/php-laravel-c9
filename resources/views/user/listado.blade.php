@@ -6,11 +6,13 @@
     }
     $userId=Session::get('user_id');
 ?>
+<script src="/js/jquery.min.js" type="text/javascript"></script> 
 <style type="text/css">      
   .btnSeguir{
     position: absolute;
     right: 120px;
-    top: 55.5%;
+    width: 10.5%;
+    top: 352px;
     -webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
     box-shadow:inset 0px 1px 0px 0px #54a3f7;
     background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #007dc1), color-stop(1, #0061a7));
@@ -44,9 +46,10 @@
   background-color:#0061a7;
 }
 .dejar {
+  width: 10.5%;
   position: absolute;
   right: 120px;
-  top: 55.5%;
+  top: 352px;
   -webkit-box-shadow:inset 0px 1px 0px 0px #cf866c;
   box-shadow:inset 0px 1px 0px 0px #cf866c;
   background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #d0451b), color-stop(1, #bc3315));
@@ -61,7 +64,7 @@
   -webkit-border-radius:3px;
   border-radius:3px;
   border:1px solid #942911;
-  display:inline-block;
+  
   cursor:pointer;
   color:#ffffff;
   font-family:Arial;
@@ -75,24 +78,29 @@
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bc3315', endColorstr='#d0451b',GradientType=0);
   background-color:#bc3315;
 }
+</style>
   @if ($losigue == false)
+ <style type="text/css">
   .dejar{
     visibility: hidden;
-  }
+  }</style>
   @else
+  <style type="text/css">
   .btnSeguir{
-    visibility: hidden !important;
-  }
+    visibility: hidden;
+  }</style>
   @endif 
   @if($selfProfile==true)
-  .btnSeguir{
+ <style type="text/css">
+  #btnSeguir{
+    visibility: hidden; 
+  }
+  #dejar{
     visibility: hidden;
   }
-  .dejar{
-    visibility: hidden;
-  }
+  </style>
   @endif
-</style>
+
 
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
   <div class="mdl-tabs__tab-bar">
@@ -118,7 +126,9 @@
       <a href="#siguiendo-panel" class="mdl-tabs__tab"><strong>{{sizeof($siguiendo)}}</strong> Siguiendo</a>
       
       <a href="#" id="dejar" class="dejar" onclick="dejarSeguir()">Dejar de Seguir</a>
-      <a href="#" id="btnSeguir"  onclick="seguir()" class="btnSeguir">Seguir</a>
+      <a href="#" id="btnSeguir"  onclick="seguir()" class="btnSeguir">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Seguir</a>
+      <!--Cuenta la historia de la programacion que jamas se hizo
+      algo tan cochino para alinear un texto :v -->
   </div>
   <div class="mdl-tabs__panel is-active" id="desafios-panel">
     <div class="mdl-grid">
@@ -174,14 +184,46 @@ $('.menu .browse').popup({
       hide: 800
     }
   });
-function seguir(){
-  alert('user/seguir/{{$profile->id}}/{{$userId}}');  
-  $.post('user/seguir/{{$profile->id}}/{{$userId}}',function(data){
-    console.log(data['resultado']);
+function seguir(){ 
+  $.ajaxSetup({
+  headers:{
+      'X-CSRF-Token': $('input[name="_token"]').val()
+    }});
+  $.ajax({
+    url: "user/seguir/{{$profile->id}}/{{$userId}}",
+    type: 'POST',
+    success: function(datos) {
+      var strResponse = JSON.stringify(datos, null, 2);
+      var respuesta = strResponse.indexOf("ok");
+      if (respuesta>0){
+        document.getElementById('dejar').style.visibility  = 'visible';
+        document.getElementById('btnSeguir').style.visibility  = 'hidden';
+      }
+    },
+    error: function(data){
+      console.log("error");
+    }
   });
 }
 function dejarSeguir(){
-  //document.getElementById("btnSeguir").style.visibility = "visible";
-  //document.getElementById("dejar").style.visibility = "hidden";
+  $.ajaxSetup({
+  headers:{
+      'X-CSRF-Token': $('input[name="_token"]').val()
+    }});
+  $.ajax({
+    url: "user/dejar_seguir/{{$profile->id}}/{{$userId}}",
+    type: 'POST',
+    success: function(datos) {
+      var strResponse = JSON.stringify(datos, null, 2);
+      var respuesta = strResponse.indexOf("ok");
+      if (respuesta>0){
+        document.getElementById('btnSeguir').style.visibility  = 'visible';
+        document.getElementById('dejar').style.visibility  = 'hidden';
+      }
+    },
+    error: function(data){
+      console.log("error");
+    }
+  });
 }
 </script>

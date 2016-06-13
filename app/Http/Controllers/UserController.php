@@ -155,18 +155,19 @@ class UserController extends Controller
         $user_seguidor = User::find($seguidor);
         $user_seguido = User::find($seguido);
         if($user_seguido == null || $user_seguidor==null){
-            return json_encode(['resultado' => 'error']);
+            echo json_encode(array('resultado' => 'error'));
         }
         $user_seguidor->seguir($seguido);
-        return json_encode(['resultado' => 'ok']);
+
+        echo json_encode(array('resultado' => 'ok'));
     }
     public function dejar_seguir($seguido,$seguidor){
         $user_seguidor = User::find($seguidor);
         $user_seguido = User::find($seguido);
         if($user_seguido == null || $user_seguidor==null){
-            return json_encode(['resultado' => 'error']);
+            echo json_encode(array('resultado' => 'error'));
         }
         $user_seguidor->dejar_seguir($seguido);
-        return json_encode(['resultado' => 'ok']);
+        echo json_encode(array('resultado' => 'ok'));
     }
 }
