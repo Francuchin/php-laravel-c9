@@ -81,7 +81,7 @@
   }
   @else
   .btnSeguir{
-    visibility: hidden;
+    visibility: hidden !important;
   }
   @endif 
   @if($selfProfile==true)
@@ -93,6 +93,7 @@
   }
   @endif
 </style>
+
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
   <div class="mdl-tabs__tab-bar">
       <a href="#desafios-panel" class="mdl-tabs__tab is-active">
@@ -101,12 +102,6 @@
       <strong>{{$numDesafios}}</strong> Desaf&iacute;os
       <?php }?>
       </a>
-      <!--<//?php if(Session::get('user_id') == $profile->id){?>
-        <a data-link="#datos-panel" class="mdl-tabs__tab">Editar Datos</a>                
-      <//?php }else{?>  
-        <a data-link="#datos-panel" class="mdl-tabs__tab">Datos</a>   
-      <//?php }?>
-      -->
       <a href="#participaciones-panel" class="mdl-tabs__tab">
       <?php $numPart=$participando->count(); if ($numPart==1){?>
       <strong>1</strong> Participaci&oacute;n
@@ -122,8 +117,8 @@
       </a>
       <a href="#siguiendo-panel" class="mdl-tabs__tab"><strong>{{sizeof($siguiendo)}}</strong> Siguiendo</a>
       
-      <a href="#" id="btnSeguir"  onclick="seguir()" class="btnSeguir">Seguir</a>
       <a href="#" id="dejar" class="dejar" onclick="dejarSeguir()">Dejar de Seguir</a>
+      <a href="#" id="btnSeguir"  onclick="seguir()" class="btnSeguir">Seguir</a>
   </div>
   <div class="mdl-tabs__panel is-active" id="desafios-panel">
     <div class="mdl-grid">
@@ -181,22 +176,12 @@ $('.menu .browse').popup({
   });
 function seguir(){
   alert('user/seguir/{{$profile->id}}/{{$userId}}');  
-  $.ajax({
-
-    url : 'user/seguir/{{$profile->id}}/{{$userId}}',
-    type : 'POST',
-    success : function() {
-      alert("andyvi");
-      document.getElementById("dejar").style.visibility = "visible";
-      document.getElementById("btnSeguir").style.visibility = "hidden";
-    },
-    error : function(xhr, status) {
-        alert('Disculpe, existió un problema');
-    },
-});
+  $.post('user/seguir/{{$profile->id}}/{{$userId}}',function(data){
+    console.log(data['resultado']);
+  });
 }
 function dejarSeguir(){
-  document.getElementById("btnSeguir").style.visibility = "visible";
-  document.getElementById("dejar").style.visibility = "hidden";
+  //document.getElementById("btnSeguir").style.visibility = "visible";
+  //document.getElementById("dejar").style.visibility = "hidden";
 }
 </script>

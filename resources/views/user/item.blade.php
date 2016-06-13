@@ -1,4 +1,4 @@
-   <link rel="stylesheet" type="text/css" href="/semantic/components/video.css">
+   
     <style type="text/css">
     #imgPerfil{
             vertical-align:inherit;

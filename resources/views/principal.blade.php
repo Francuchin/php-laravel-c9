@@ -1,7 +1,7 @@
 @extends('cuerpoHTML')
 @section('css')
     @parent
-    <link rel="stylesheet" type="text/css" href="/semantic/components/video.css">
+    
     <style type="text/css">
         .verUsuarios{
             position: fixed;
