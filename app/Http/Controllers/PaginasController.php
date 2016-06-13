@@ -49,15 +49,21 @@ class PaginasController extends Controller
     public function visitarPerfil($id){
         $user = User::find($id);
         if ($user!=null && Session::has('user_id')) {
-            return view('user.profile')->with('profile',$user);
+            $participando = $user->participaciones()->get();
+            $siguiendo = $user->siguiendo();
+            $seguidores = $user->seguidores();
+            return view('user.profile')->with('profile',$user)->with('participando', $participando)->with('siguiendo', $siguiendo)->with('seguidores', $seguidores);
         }else{
             return redirect('/');
         }
     }
 
     public function misDesafios(){
-    	if (Session::has('user_id')) {
-        	 return view('user.profile')->with('profile',Session::get('user'));
+        if (Session::has('user_id')) {
+            $participando = Session::get('user')->participaciones()->get();
+            $siguiendo = Session::get('user')->siguiendo();
+            $seguidores = Session::get('user')->seguidores();
+            return view('user.profile')->with('profile',Session::get('user'))->with('participando', $participando)->with('siguiendo', $siguiendo)->with('seguidores', $seguidores);
         }else{
             return redirect('/');
         }

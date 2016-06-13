@@ -69,6 +69,15 @@ class User extends Model
             }
             return $seguidores;          
     }
+    public function esseguido($id_user_seguidor){
+        $consulta = DB::table('seguimientos')->select('id_user_seguido')->where('id_user_seguidor', '=', $id_user_seguidor)->get();
+        foreach ($consulta as $seguidor_id) {
+            if($seguidor_id->id_user_seguido==$this->id);
+                return true;
+        }
+        return false;
+        
+    }    
     public function siguiendo(){
         $consulta = DB::table('users')
                     ->select('users.id')
