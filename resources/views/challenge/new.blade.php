@@ -23,6 +23,7 @@
   }
   .foto_btn{
     position: absolute;
+    z-index: 3;
     border-radius: 3px;
     border: solid 1px rgba(0,0,0,0.2);
     margin-top: 15px;
@@ -69,17 +70,19 @@
     var xhttp;
     var title = document.getElementById('title').value;
     var description = document.getElementById('description').value;
+    var captura =document.getElementById('captura').value;
+    var video = "/videos/video.mp4"
     xhttp = new XMLHttpRequest();
-    xhttp.onprogress = function () {
-     document.getElementById("progreso").innerHTML = "<div class='ui active inverted dimmer'><div class='ui large text loader'>Loading</div></div>";
-   };
+    document.getElementById("progreso").innerHTML = "<div class='ui active inverted dimmer'><div class='ui large text loader'>Loading</div></div>";
    xhttp.onload = function () {
     window.location.href = '/challenge/'+ xhttp.responseText;
+    console.log(xhttp.responseText);
   };
-  xhttp.open("post", "/challenge", true); 
+
+  xhttp.open("post", "/challenge"); 
   xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
   xhttp.setRequestHeader('X-CSRF-TOKEN', '<?=csrf_token() ?>');     
-  xhttp.send("title="+title+"&description="+description);
+  xhttp.send("title="+title+"&description="+description+"&video="+video+"&poster="+captura.replace('+', '%2B').replace('=','%45B'));
 }
 
 function actualizaimagen(){
@@ -101,7 +104,7 @@ function actualizaimagen(){
 </div>
 
     <div class="video">
-      <div type="button" class="foto_btn" > captura </div>
+      <div class="foto_btn" > captura </div>
       <video class="video_contenido" src="/videos/video.mp4" poster="/images/media.jpg"></video>
       <input type="range" class="video_rango">
       <div class="video_cargado"></div>

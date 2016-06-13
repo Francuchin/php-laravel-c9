@@ -44,13 +44,21 @@ class ChallengeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {          
+        (Input::get('title'))? $title = Input::get('title') : $title = "null";
+        (Input::get('comentario'))? $comentario = Input::get('comentario') : $comentario = "null";
+        (Input::get('video'))? $video = Input::get('video') : $video = "null";
+        (Input::get('captura'))? $captura = Input::get('captura') : $captura = "null";
+
           $Challenge = new Challenge;
-          $Challenge->title = Input::get('title'); 
-          $Challenge->description = Input::get('description'); 
-          $Challenge->id_user =  Session::get('user_id'); 
+          $Challenge->title = $title;
+          $Challenge->description = $comentario;
+          $Challenge->video = $video;
+          $Challenge->poster = $captura;
+          $Challenge->id_user =  Session::get('user_id');
           $Challenge->save();
-          echo $Challenge->id;
+          $id = $Challenge->id;
+          return Redirect::to('challenge/'.$id);
     }
 
     /**
