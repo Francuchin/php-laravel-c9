@@ -36,6 +36,9 @@
     width: 100%;
     height: 100%;
   }
+  #nuevo{
+  	
+  }
 </style>
 <div class="mdl-cell mdl-card mdl-shadow--4dp" id="nuevo">
 <div id="progreso"></div>
@@ -76,10 +79,9 @@
 			position: absolute;
 			width: 100%;
 			bottom: 5px;
-			transform: translate(25%, -5px);
+			transform: translatey(-5px);
 			">
 		<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent" >Aceptar</button> 
-		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary">Cancelar</a>
 	</div>
 	</form>
 </div>

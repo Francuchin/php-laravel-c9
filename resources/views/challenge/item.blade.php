@@ -4,7 +4,7 @@
     ($challenge->poster != "null")? $poster =$challenge->poster : $poster="/images/media.jpg";
 ?>
 <div class="mdl-cell mdl-card mdl-shadow--4dp">
-<div class="ui dimmer nueva_participacion participacion " style="background-color: black;"><!-- Nueva Participacion -->
+<div class="ui dimmer nueva_participacion participacion "><!-- Nueva Participacion -->
   <div class="cerrar" onclick="javascript:$(this).parent().parent().dimmer('hide');">
          <i class="material-icons">close</i>
   </div>
@@ -21,23 +21,19 @@
         </label>
       </div>
     <form method="post" action="accepting" style="padding:5px;"  autocomplete="off">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="text" name="title"required>
-        <label class="mdl-textfield__label">Titulo</label>
-       </div>  
-       <div class="mdl-card__title-text mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style=" width: 100%;">
-        <textarea class="mdl-textfield__input" type="text" name="comentario" required></textarea>
-        <label class="mdl-textfield__label">Comentario</label>
-      </div>
+      <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <input type="hidden" name="video" class="nueva_participacion_video_txt">
       <input type="hidden" name="captura" class="nueva_participacion_captura_txt">
-      <input type="hidden" name="id_challenge" value="{{$challenge->id}}">  
+      <input type="hidden" name="id_challenge" value="{{$challenge->id}}">
+      <label>Titulo
+        <input class="mdl-textfield__input" type="text" name="title" required>
+      </label>
+      <label>Comentario
+        <textarea class="mdl-textfield__input" type="text" name="comentario" required></textarea>
+      </label>
+      <input type="submit" name="" value="aceptar">  
     </form>
   </div>  
-  <div class="actions">
-    <i class="material-icons" onclick="javascript:this.parentElement.parentElement.getElementsByTagName('form')[0].submit();">file_upload</i>
-  </div>
 </div><!-- FIN Nueva Participacion -->
 <div class="mdl-card__media">
 @if($challenge->video != "null")

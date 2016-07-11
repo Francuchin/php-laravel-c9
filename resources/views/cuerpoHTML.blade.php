@@ -178,6 +178,7 @@
         .video_contenido{
             width: 100%;
             height: 100%;
+            display: block;
         }
         .video_rango {
           position: absolute;
@@ -237,16 +238,46 @@
         .img_replay{
            /* background-color: rgba(255, 255, 255, 0.6);*/
         }
+        .ver-guia:active + .guia{
+            opacity: 1;
+        }
+        .guia{
+            opacity: 0;
+            transition: opacity .4s;
+             list-style-type:none;
+             padding: 5px;
+             max-height: 140px;
+             background-color: rgba(123, 123, 123, 0.2);
+             box-shadow: 0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12),0 5px 5px -3px rgba(0,0,0,.2);
+        }
+        .guia>li:first-child{
+            border-top: none;
+        }
+        .guia>li{
+            border-top: 1px solid rgba(200,200,200,.5);
+        }
+        .guia>li>i{
+            vertical-align: middle;
+        }
     </style>
     <style type="text/css">
         /*------nueva_participacion---------*/
-      
+        .nueva_participacion{
+            background-color: rgb(230,230,230)!important;
+        }
         .formulario_nueva_participacion{
+            color: black;
             position: absolute;
             width: 100%;
-            height: 90%;
+            height: 100%;
             top: 0;
             left: 0;
+        }
+        .formulario_nueva_participacion>.input[type=text]{
+            margin: 5px;
+        }
+        .formulario_nueva_participacion>.input[type=submit]{
+            margin: 5px;
         }
         .nueva_participacion_video{
             top:0;
@@ -259,16 +290,41 @@
             transform: translateY(-50%);
 
         }
-        .nueva_participacion>.actions{
-            transform: translate(0,0)!important;
-            width: 100%;
-            height: 9%;
-            left: 0!important;
+        .nuevoDesafioBotonLlamativo{
+            color: red;
+            animation-name: animarboton;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
         }
-        .nueva_participacion>.actions>i{
-            height: 100%;
-            cursor: pointer;
+        @keyframes animarboton{
+            0%{
+                color: black;
+                font: 100 1rem 'Bitter';
+            }
+            50%{
+                color: red;
+                font: 900 1rem 'Bitter';
+            }
+            100%{
+                color: black;
+                font: 100 1rem 'Bitter';                
+            }
         }
+        @-webkit-keyframes animarboton{
+            0%{
+                color: black;
+                font: 100 1rem 'Bitter';
+            }
+            50%{
+                color: red;
+                font: 900 1rem 'Bitter';
+            }
+            100%{
+                color: black;
+                font: 100 1rem 'Bitter';                
+            }
+        }
+
     </style>
 	@show
 	@section('js')

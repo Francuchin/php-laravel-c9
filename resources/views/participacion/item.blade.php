@@ -1,23 +1,3 @@
- <!--<div class="mdl-card mdl-shadow--4dp"  style="margin:10px;">
-  <div class="mdl-card__title">
-    <h5 class="mdl-card__title-text">{{$participacion->user->full_name()}}</h5>
-  </div>
-  <div class="mdl-card__media" >
-  <div class="video">
-      <video class="video_contenido" src="{{$participacion->video}}" poster="{{$participacion->poster}}" preload="none"></video>
-      <input type="range" class="video_rango">
-      <div class="video_cargado" ></div>
-  </div>
-  </div>
-  <div class="mdl-card__supporting-text">
-    <h3>{{$participacion->title}}</h3> 
-    {{$participacion->description}}
-  </div>
-  <div class="mdl-card__actions">
-    <a href="(URL or function)">nike</a>
-  </div>
-</div>
--->
 <div class="ui mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-card mdl-card mdl-shadow--4dp ">
 <div class="video">
       <video class="video_contenido" src="{{$participacion->video}}" poster="{{$participacion->poster}}" preload="none"></video>
