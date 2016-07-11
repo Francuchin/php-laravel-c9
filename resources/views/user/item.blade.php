@@ -9,10 +9,13 @@
             box-shadow: 0px 0px 2px black;
             display: inline-block; 
         }
-      #usertitle{
+      #usertitle, #cardFooter{
         background-color: rgb(68,138,255);
         border: solid 1px rgba(0,0,0,.1);
         box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+      }
+      #cardFooter > a{
+        color: black;
       }
       .datosUser{
         color: black;
@@ -46,7 +49,7 @@
       </table>
     </div>
   </div>
-  <div class="mdl-card__actions">
+  <div id="cardFooter" class="mdl-card__actions">
     <a href="/{{$user->id}}">Ir al perfil</a>
   </div>
 </div>

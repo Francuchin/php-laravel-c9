@@ -109,6 +109,12 @@
         </div>
         <div class="field">
           <div class="ui left icon input">
+            <i class="calendar icon"></i>
+            <input type="date" name="date" placeholder="Fecha de nacimiento"value="{{Input::old('date')}}">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
             <i class="lock icon"></i>
             <input type="password" name="password" placeholder="Password">
           </div>

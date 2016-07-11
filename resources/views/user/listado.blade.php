@@ -7,7 +7,13 @@
     $userId=Session::get('user_id');
 ?>
 <script src="/js/jquery.min.js" type="text/javascript"></script> 
-<style type="text/css">      
+<style type="text/css">  
+  #editar_datos{
+    height: 600px;
+    border-style: groove;
+  }    
+
+  
   .btnSeguir{
     position: absolute;
     right: 120px;
@@ -44,6 +50,12 @@
   background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7', endColorstr='#007dc1',GradientType=0);
   background-color:#0061a7;
+}
+.editUser{
+  position: absolute;
+  left: 120px;
+  top: 352px;
+  color: black;
 }
 .dejar {
   width: 10.5%;
@@ -124,11 +136,14 @@
       <?php }?>
       </a>
       <a href="#siguiendo-panel" class="mdl-tabs__tab"><strong>{{sizeof($siguiendo)}}</strong> Siguiendo</a>
-      
+      @if($selfProfile==true)
+        <a href="#editar_datos" class="mdl-tabs__tab"><i class="edit icon"></i>Editar Datos</a>
+      @endif
       <a href="#" id="dejar" class="dejar" onclick="dejarSeguir()">Dejar de Seguir</a>
       <a href="#" id="btnSeguir"  onclick="seguir()" class="btnSeguir">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Seguir</a>
       <!--Cuenta la historia de la programacion que jamas se hizo
       algo tan cochino para alinear un texto :v -->
+
   </div>
   <div class="mdl-tabs__panel is-active" id="desafios-panel">
     <div class="mdl-grid">
@@ -144,7 +159,7 @@
          @include('participacion.item', array('participacion'=>$item))
       @endforeach
     @else
-      <p>No hay desafios en los que participes</p>
+      <p>No hay desaf&iacute;os en los que participes</p>
     @endif
     </div>
   </div>
@@ -162,17 +177,9 @@
     @endforeach
     </div>
   </div>
-  <!--div class="mdl-tabs__panel is-active" id="datos-panel">
-  @if(Session::get('user_id') == $profile->id)
-    <div class="mdl-grid">
-      Editando datos
-    </div>
- @else  
-      <div class="mdl-grid">
-        Viendo datos
-      </div>
-  @endif
-  </div--> 
+  <div class="mdl-tabs__panel" id="editar_datos">
+    
+  </div> 
 </div>
 <script>
 $('.menu .browse').popup({
