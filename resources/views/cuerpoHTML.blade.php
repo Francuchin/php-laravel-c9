@@ -292,9 +292,11 @@
         }
         .nuevoDesafioBotonLlamativo{
             color: red;
+            /*
             animation-name: animarboton;
             animation-duration: 1s;
             animation-iteration-count: infinite;
+            */
         }
         @keyframes animarboton{
             0%{
