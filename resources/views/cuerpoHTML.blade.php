@@ -4,7 +4,8 @@
 	<title>@yield('title', 'Challenge Accepted')</title>
 	<link rel="icon" href="/images/ico.png" type="image/png"> 
 	@section('css')
-    <!--<link rel="stylesheet" href="/css/material.grey-blue.min.css" />-->
+    <link rel="stylesheet" href="/css/skeleton.css" />>
+
     <link rel="stylesheet" href="/css/material.grey-blue.min.css" >
     <link rel="stylesheet" type="text/css" href="/semantic/semantic.css">
     <link rel="stylesheet" href="/css/icon.css">

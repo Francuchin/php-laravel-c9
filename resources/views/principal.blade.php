@@ -1,8 +1,6 @@
 @extends('cuerpoHTML')
 @section('css')
     @parent
-<<<<<<< HEAD
-    
     <style type="text/css">
         .verUsuarios{
             position: fixed;
@@ -11,9 +9,7 @@
         z-index: 1000;
         }    
     </style>
-=======
-   
->>>>>>> 097ff39cf28b44bff298123f583c44d50905306d
+
 @stop
 @section('js')
     @parent

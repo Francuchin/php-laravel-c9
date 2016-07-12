@@ -97,9 +97,28 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user = Session::get('user');
+        $rules = array(
+            'email' => 'unique:users,email,'.$user->id,
+            'password'      => 'same:re_password'
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails()) {
+            return Redirect::to('/I')
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } else {
+          $user = new User;
+          $user->first_name = Input::get('first_name'); 
+          $user->last_name = Input::get('last_name'); 
+          $user->email = Input::get('email'); 
+          $user->password = md5(Input::get('password')); 
+          
+          return Redirect::to('/I');
+        }
+
     }
 
     /**

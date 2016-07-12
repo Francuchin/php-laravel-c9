@@ -6,14 +6,16 @@
     }
     $userId=Session::get('user_id');
 ?>
+
 <script src="/js/jquery.min.js" type="text/javascript"></script> 
+
 <style type="text/css">  
   #editar_datos{
     height: 600px;
-    border-style: groove;
+    position: relative;
   }    
 
-  
+
   .btnSeguir{
     position: absolute;
     right: 120px;
@@ -116,7 +118,7 @@
 
 <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
   <div class="mdl-tabs__tab-bar">
-      <a href="#desafios-panel" class="mdl-tabs__tab is-active">
+      <a href="#desafios-panel" id="a_desafios" class="mdl-tabs__tab is-active">
       <?php $numDesafios=$items->count(); if($numDesafios==1){?>1 Desaf&iacute;o
       <?php } else{?>
       <strong>{{$numDesafios}}</strong> Desaf&iacute;os
@@ -137,13 +139,13 @@
       </a>
       <a href="#siguiendo-panel" class="mdl-tabs__tab"><strong>{{sizeof($siguiendo)}}</strong> Siguiendo</a>
       @if($selfProfile==true)
-        <a href="#editar_datos" class="mdl-tabs__tab"><i class="edit icon"></i>Editar Datos</a>
+        <a href="#editar_datos" id="a_editar" class="mdl-tabs__tab"><i class="edit icon"></i>Editar Datos</a>
       @endif
+
       <a href="#" id="dejar" class="dejar" onclick="dejarSeguir()">Dejar de Seguir</a>
       <a href="#" id="btnSeguir"  onclick="seguir()" class="btnSeguir">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Seguir</a>
       <!--Cuenta la historia de la programacion que jamas se hizo
       algo tan cochino para alinear un texto :v -->
-
   </div>
   <div class="mdl-tabs__panel is-active" id="desafios-panel">
     <div class="mdl-grid">
@@ -159,7 +161,7 @@
          @include('participacion.item', array('participacion'=>$item))
       @endforeach
     @else
-      <p>No hay desaf&iacute;os en los que participes</p>
+      <p>No hay desafios en los que participes</p>
     @endif
     </div>
   </div>
@@ -178,8 +180,9 @@
     </div>
   </div>
   <div class="mdl-tabs__panel" id="editar_datos">
-    
+    @include('user.edit')
   </div> 
+
 </div>
 <script>
 $('.menu .browse').popup({
@@ -234,3 +237,11 @@ function dejarSeguir(){
   });
 }
 </script>
+ @if (count($errors) > 0)
+  <script type="text/javascript">
+    $("#desafios-panel").removeClass("is-active");
+    $("#editar_datos").addClass("is-active");
+    $("#a_desafios").removeClass("is-active");
+    $("#a_editar").addClass("is-active");
+  </script>
+@endif

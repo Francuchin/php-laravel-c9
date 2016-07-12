@@ -46,7 +46,7 @@
                   },
                   {
                     type   : 'email',
-                    prompt : 'Ingrese un correo valido'
+                    prompt : 'Ingrese un correo v&aacute;lido'
                   }]
               },
               password: {
@@ -105,12 +105,6 @@
           <div class="ui left icon input">
             <i class="user icon"></i>
             <input type="text" name="email" placeholder="E-mail address" value="{{Input::old('email')}}" >
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="calendar icon"></i>
-            <input type="date" name="date" placeholder="Fecha de nacimiento"value="{{Input::old('date')}}">
           </div>
         </div>
         <div class="field">

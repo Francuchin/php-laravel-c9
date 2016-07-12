@@ -1,4 +1,3 @@
-   
     <style type="text/css">
     #imgPerfil{
             vertical-align:inherit;
@@ -10,20 +9,27 @@
             display: inline-block; 
         }
       #usertitle, #cardFooter{
+/*=======
+      #usertitle{
+>>>>>>> 7daf8c96f37b0ae1cc7020cd308c4a77ae36df73*/
         background-color: rgb(68,138,255);
         border: solid 1px rgba(0,0,0,.1);
         box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
       }
+
       #cardFooter > a{
         color: black;
       }
+
       .datosUser{
         color: black;
         font-size: 1.2em;
         font-weight: bold;
         font-variant: small-caps;
         font-family: "Times New Roman", Times, serif;
-        
+      }
+      .mdl-card__supporting-text{
+        overflow:hidden !important;
       }
       .tablaDatos{
         border-collapse: separate;

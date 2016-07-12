@@ -30,6 +30,8 @@ Route::post('subir_video',function(){
           $arr = array('resultado' => 'ok', 'ruta' => $ruta);
           return response()->json($arr);
 });
+
+Route::post('/user/update','UserController@update');
 //Route::get ('challenge/create','ChallengeController@create');
 Route::get('challenge/{id}/accepting','ParticipacionController@create');
 Route::get('challenge/{id}','ChallengeController@ver');

@@ -78,6 +78,7 @@ class User extends Model
         return false;
 
     }
+
     public function siguiendo(){
         $consulta = DB::table('users')
                     ->select('users.id')
