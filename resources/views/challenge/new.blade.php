@@ -114,16 +114,16 @@ function actualizaimagen(){
   <div class="mdl-card__supporting-text">  
   <div class="mdl-card__title-text mdl-textfield mdl-js-textfield mdl-textfield--floating-label titulo etiqueta">
     <input class="mdl-textfield__input" type="text" name="title" id="title" >
-    <label class="mdl-textfield__label" for="sample1">Titulo del desafio</label>
+    <label class="mdl-textfield__label" for="sample1">T&iacute;tulo del desafio</label>
   </div> 
   <div id="areaTexto" class="mdl-card__title-text mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     <textarea class="mdl-textfield__input" type="text" rows= "3" name="description" id="description" ></textarea>
-    <label class="mdl-textfield__label" for="description">Descripcion del desafio</label>
+    <label class="mdl-textfield__label" for="description">Descripci&oacute;n del desaf&iacute;o</label>
   </div>
 </div>
 <div class="mdl-card__actions mdl-card--border">
   <a class="mdl-button mdl-js-button mdl-js-ripple-effect"  onclick="javascript:crearDesafio()">
-    Crea tu desafio!
+    Crea tu desaf&iacute;o!
   </a>
   <button class="mdl-button mdl-js-button mdl-js-ripple-effect etiqueta" id="btn_subir">
     <div class="icon material-icons">cloud_upload</div> Subir Multimedia

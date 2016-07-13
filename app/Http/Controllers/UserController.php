@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Session;
-
+use DB;
 class UserController extends Controller
 {
     /**
@@ -104,18 +104,87 @@ class UserController extends Controller
             'email' => 'unique:users,email,'.$user->id,
             'password'      => 'same:re_password'
         );
-        $validator = Validator::make(Input::all(), $rules);
+        $messages = [
+            'same'    => 'Las contrase&ntilde;as no coinciden',
+            'unique'    => 'Esa direcci&oacute;n de correo ya ha sido tomada.'
+        ];
+        $validator = Validator::make(Input::all(), $rules, $messages);
         if ($validator->fails()) {
             return Redirect::to('/I')
                 ->withErrors($validator)
                 ->withInput(Input::except('password'));
         } else {
-          $user = new User;
-          $user->first_name = Input::get('first_name'); 
-          $user->last_name = Input::get('last_name'); 
-          $user->email = Input::get('email'); 
-          $user->password = md5(Input::get('password')); 
-          
+            if(Input::get('first_name')!="")
+                $user->first_name = Input::get('first_name'); 
+            if(Input::get('last_name')!="")
+                $user->last_name = Input::get('last_name');
+            if(Input::get('email')!="") 
+                $user->email = Input::get('email'); 
+            if(Input::get('password')!="")   
+                $user->password = md5(Input::get('password'));
+            $ruta = "images";
+            if ($request->hasFile('perfil_url')) {
+                $profilePicture = $request->file('perfil_url');
+                $extension = $profilePicture->getClientOriginalExtension();
+                $fileName = md5(rand ( 0 , 1000)).".".$extension;
+                $profilePicture->move($ruta, $fileName);
+                $userprofilePicture = "/".$ruta."/".$fileName;
+                DB::table('img_users')->insert(
+    ['img' => $userprofilePicture, 'tipo' => 1, 'id_user' => $user->id]
+);
+            }
+
+            if ($request->hasFile('portada_url')) {
+                $portadaPicture = $request->file('portada_url');
+                $extension = $portadaPicture->getClientOriginalExtension();
+                $fileName = md5(rand ( 0 , 1000)).".".$extension;
+                $portadaPicture->move($ruta, $fileName);
+                $userportadaPicture = "/".$ruta."/".$fileName;
+                DB::table('img_users')->insert(
+    ['img' => $userportadaPicture, 'tipo' => 2, 'id_user' => $user->id]
+);
+            }
+
+
+            /*if ($_FILES["imagen"]["error"] > 0){
+                echo "ha ocurrido un error";
+            } else {
+                //ahora vamos a verificar si el tipo de archivo es un tipo de imagen permitido.
+                //y que el tamano del archivo no exceda los 100kb
+                $permitidos = array("image/jpg", "image/jpeg", "image/gif", "image/png");
+                $limite_kb = 100;
+
+                if (in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024){
+                    //esta es la ruta donde copiaremos la imagen
+                    //recuerden que deben crear un directorio con este mismo nombre
+                    //en el mismo lugar donde se encuentra el archivo subir.php
+                    $ruta = "imagenes/" . $_FILES['imagen']['name'];
+                    //comprovamos si este archivo existe para no volverlo a copiar.
+                    //pero si quieren pueden obviar esto si no es necesario.
+                    //o pueden darle otro nombre para que no sobreescriba el actual.
+                    if (!file_exists($ruta)){
+                        //aqui movemos el archivo desde la ruta temporal a nuestra ruta
+                        //usamos la variable $resultado para almacenar el resultado del proceso de mover el archivo
+                        //almacenara true o false
+                        $resultado = @move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
+                        if ($resultado){
+                            echo "el archivo ha sido movido exitosamente";
+                        } else {
+                            echo "ocurrio un error al mover el archivo.";
+                        }
+                    } else {
+                        echo $_FILES['imagen']['name'] . ", este archivo existe";
+                    }
+                } else {
+                    echo "archivo no permitido, es tipo de archivo prohibido o excede el tamano de $limite_kb Kilobytes";
+                }
+            }
+*/
+
+
+
+
+            $user->save();
           return Redirect::to('/I');
         }
 

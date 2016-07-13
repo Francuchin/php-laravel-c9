@@ -11,87 +11,24 @@
 
 <style type="text/css">  
   #editar_datos{
-    height: 600px;
+    height: 550px;
     position: relative;
   }    
 
 
-  .btnSeguir{
+  .btnSeguir, .dejar{
     position: absolute;
-    right: 120px;
-    width: 10.5%;
-    top: 352px;
-    -webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
-    box-shadow:inset 0px 1px 0px 0px #54a3f7;
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #007dc1), color-stop(1, #0061a7));
-    background:-moz-linear-gradient(top, #007dc1 5%, #0061a7 100%);
-    background:-webkit-linear-gradient(top, #007dc1 5%, #0061a7 100%);
-    background:-o-linear-gradient(top, #007dc1 5%, #0061a7 100%);
-    background:-ms-linear-gradient(top, #007dc1 5%, #0061a7 100%);
-    background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#007dc1', endColorstr='#0061a7',GradientType=0);
-    background-color:#007dc1;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
-    border-radius:3px;
-    border:1px solid #124d77;
-    cursor:pointer;
-    color:#ffffff;
-    font-family:Arial;
-    font-size:13px;
-    padding:6px 24px;
-    text-decoration:none;
-    text-shadow:0px 1px 0px #154682;
+    right: 0px;
+    top: 302.5px;
   }
-.btnSeguir:hover {
-  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7), color-stop(1, #007dc1));
-  background:-moz-linear-gradient(top, #0061a7 5%, #007dc1 100%);
-  background:-webkit-linear-gradient(top, #0061a7 5%, #007dc1 100%);
-  background:-o-linear-gradient(top, #0061a7 5%, #007dc1 100%);
-  background:-ms-linear-gradient(top, #0061a7 5%, #007dc1 100%);
-  background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7', endColorstr='#007dc1',GradientType=0);
-  background-color:#0061a7;
-}
+
 .editUser{
   position: absolute;
   left: 120px;
   top: 352px;
   color: black;
 }
-.dejar {
-  width: 10.5%;
-  position: absolute;
-  right: 120px;
-  top: 352px;
-  -webkit-box-shadow:inset 0px 1px 0px 0px #cf866c;
-  box-shadow:inset 0px 1px 0px 0px #cf866c;
-  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #d0451b), color-stop(1, #bc3315));
-  background:-moz-linear-gradient(top, #d0451b 5%, #bc3315 100%);
-  background:-webkit-linear-gradient(top, #d0451b 5%, #bc3315 100%);
-  background:-o-linear-gradient(top, #d0451b 5%, #bc3315 100%);
-  background:-ms-linear-gradient(top, #d0451b 5%, #bc3315 100%);
-  background:linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d0451b', endColorstr='#bc3315',GradientType=0);
-  background-color:#d0451b;
-  -moz-border-radius:3px;
-  -webkit-border-radius:3px;
-  border-radius:3px;
-  border:1px solid #942911;
-  
-  cursor:pointer;
-  color:#ffffff;
-  font-family:Arial;
-  font-size:13px;
-  padding:6px 24px;
-  text-decoration:none;
-  text-shadow:0px 1px 0px #854629;
-}
-.dejar:hover {
-  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bc3315), 
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bc3315', endColorstr='#d0451b',GradientType=0);
-  background-color:#bc3315;
-}
+
 </style>
   @if ($losigue == false)
  <style type="text/css">
@@ -142,8 +79,8 @@
         <a href="#editar_datos" id="a_editar" class="mdl-tabs__tab"><i class="edit icon"></i>Editar Datos</a>
       @endif
 
-      <a href="#" id="dejar" class="dejar" onclick="dejarSeguir()">Dejar de Seguir</a>
-      <a href="#" id="btnSeguir"  onclick="seguir()" class="btnSeguir">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Seguir</a>
+      <a href="#" id="dejar" class="dejar" onclick="dejarSeguir()"><i class="remove user large red inverted circular icon"></i></a>
+      <a href="#" id="btnSeguir"  onclick="seguir()" class="btnSeguir"><i class="add user large green inverted circular icon"></i></a>
       <!--Cuenta la historia de la programacion que jamas se hizo
       algo tan cochino para alinear un texto :v -->
   </div>

@@ -56,6 +56,6 @@
     </div>
   </div>
   <div id="cardFooter" class="mdl-card__actions">
-    <a href="/{{$user->id}}">Ir al perfil</a>
+    <a href="/{{$user->id}}"><i class="user icon"></i>Ir al perfil</a>
   </div>
 </div>

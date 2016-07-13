@@ -30,7 +30,7 @@
 <div class="mdl-card__actions mdl-card--border">                    
     <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--primary"  href="/challenge/{{$challenge->id}}">Ver</a>
 <?php if(!$challenge->userParticipa(Session::get('user_id')) && $challenge->user->id != Session::get('user_id')){ ?>
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"  href="/challenge/{{$challenge->id}}/accepting">¿Aceptas el desafio?</a>
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"  href="/challenge/{{$challenge->id}}/accepting">¿Aceptas el desaf&iacute;o?</a>
 <?php } ?>
 </div>
 <div class="mdl-card__actions mdl-card--border">                    

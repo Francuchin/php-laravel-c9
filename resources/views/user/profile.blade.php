@@ -106,7 +106,7 @@
         <div class="usuario">
                 {{$profile->full_name()}} <br>
                 <spam>{{$profile->email}}</spam> <br>
-                <spam>Desafios creados: {{sizeOf($profile->challenges)}}</spam> <br>
+                <spam>Desaf&iacute;os creados: {{sizeOf($profile->challenges)}}</spam> <br>
             </div>
     </div>
     <?php 

@@ -53,7 +53,7 @@
                 identifier  : 'password',
                 rules: [{
                     type   : 'length[4]',
-                    prompt : 'Una contraseña valida es de al menos 4 caracteres'
+                    prompt : 'Una contraseña v&aacute;lida es de al menos 4 caracteres'
                   },
                   {
                     type   : 'match[re_password]',
@@ -124,7 +124,7 @@
       <div class="ui error message"></div>
     </form>
     <div class="ui message">
-      ¿Ya estas registrado? <a href="/">Ingresar</a>
+      ¿Ya est&iacute;s registrado? <a href="/">Ingresar</a>
     </div>
   </div>
 </div>  

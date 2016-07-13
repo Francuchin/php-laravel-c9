@@ -90,7 +90,7 @@
       <div class="ui error message"></div>
     </form>
     <div class="ui message">
-      ¿No estas registrado? <a href="user/signin">Nuevo registro</a>
+      ¿No est&aacute;s registrado? <a href="user/signin">Nuevo registro</a>
     </div>
   </div>
 </div>  

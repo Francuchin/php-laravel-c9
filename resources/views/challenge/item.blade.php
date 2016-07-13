@@ -24,7 +24,7 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <input class="mdl-textfield__input" type="text" name="title"required>
-        <label class="mdl-textfield__label">Titulo</label>
+        <label class="mdl-textfield__label">T&iacute;tulo</label>
        </div>  
        <div class="mdl-card__title-text mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style=" width: 100%;">
         <textarea class="mdl-textfield__input" type="text" name="comentario" required></textarea>
@@ -80,7 +80,7 @@
 <div class="mdl-card__actions mdl-card--border">                    
     <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--primary"  href="/challenge/{{$challenge->id}}">Ver</a>
 <?php if(!$challenge->userParticipa(Session::get('user_id')) && $challenge->user->id != Session::get('user_id')){ ?>
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" onclick="javascript:$(this).parent().parent().dimmer('show')">¿Aceptas el desafio?</a>
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" onclick="javascript:$(this).parent().parent().dimmer('show')">¿Aceptas el desaf&iacute;o?</a>
 <?php } ?>
 </div>
 <div class="mdl-card__actions mdl-card--border">
